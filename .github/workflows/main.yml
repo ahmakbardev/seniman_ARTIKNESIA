@@ -33,5 +33,8 @@ jobs:
             git pull origin develop
             composer install
             composer update
+            php artisan route:clear
+            php artisan config:cache
+            php artisan optimize
             php artisan key:generate
             ln -s /home/u376682195/domains/sideospary.com/new_artiknesia/seniman_ARTIKNESIA/public /home/u376682195/domains/sideospary.com/public_html/seniman
