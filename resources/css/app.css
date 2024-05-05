@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-color-outline {
+    @apply ring-inset ring-1 ring-primary bg-white text-primary;
+  }
+  .btn-color-outline-white {
+    @apply ring-inset ring-1 ring-white text-white;
+  }
+
+  .btn-color-fill {
+    @apply bg-primary text-white;
+  }
+  .btn-color-fill-white {
+    @apply bg-white text-primary;
+  }
+}
+
+.special-container:hover {
+  transform: scale(1);
+  filter: unset;
+}
+
+.card-spesial {
+  transition: all .6s ease;
+}
+
+.special-container:hover > .card-spesial:not(:hover) {
+  filter: blur(0.5px);
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.swiper-pagination-bullet {
+    position: relative;
+    width: fit-content; /* Atur sesuai kebutuhan */
+    height: auto;
+    text-align: left;
+    border-radius: 5px; /* Atur sesuai kebutuhan */
+    opacity: 1;
+    margin-right: 20px;
+    background-color: rgba(0, 0, 0, 0.541);
+    transition: all ease-in-out;
+    transform-origin: right center; /* Set titik transformasi ke kanan */
+}
+
+.swiper-pagination-bullet em {
+    font-size: 15px;
+    line-height: 28px;
+    font-weight: bold;
+    letter-spacing: -0.38px;
+    color: #111;
+}
+
+.swiper-pagination-bullet i {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.176);
+}
+
+.swiper-pagination-bullet b {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 0%;
+    height: 8px;
+    background-color: #DFBE65;
+    /*progress bar 채워지는 부분*/
+    border-radius: 5px; /* Ganti nilai sesuai kebutuhan */
+    /* Tambahkan transisi untuk membuatnya terlihat smooth */
+    transition: width ease-in-out, border-radius ease-in-out;
+}
+
+.swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+    width: 8px; /* Atur ukuran default */
+    border-radius: 5px; /* Atur sesuai kebutuhan */
+    transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+    transform-origin: right center; /* Set titik transformasi ke kanan */
+}
+
+.swiper-pagination-bullet-active {
+    width: 100px !important;
+    background: transparent !important;
+    border-radius: 5px;
+}
+
+/* Transisi untuk dot yang aktif */
+.swiper-pagination-bullet-active b {
+    transition: width 0.3s ease-in-out; /* Ubah sesuai kebutuhan */
+    border-radius: 5px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    width: unset !important;
+    left: unset !important;
+    bottom: unset !important;
+}
+
+#swiper-testi {
+    left: 50% !important;
+    transform: translateX(-50%);
+    bottom: -20px !important;
+}
+
+@media screen and (max-width: 480px) {
+    .swiper-pagination-bullet-active {
+        width: 30px !important;
+    }
+
+    .swiper-pagination-bullet {
+        margin-right: 5px;
+    }
+}
+
+.underline-animation {
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+}
+
+.underline-animation::before,
+.underline-animation::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 6px; /* Sesuaikan tinggi underline dengan tinggi SVG */
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="4" viewBox="0 0 46 4" xmlns="http://www.w3.org/2000/svg" fill="none"><path d="M1.00725 2.16148C1.02715 2.27184 9.62924 2.35706 9.92338 2.358C16.0862 2.37767 21.9254 2.34486 27.9426 1.47341C30.9186 1.04241 33.1247 1.17425 35.9828 1.92979C37.4526 2.31833 39.4417 2.85799 40.9975 2.858C41.4976 2.858 43.2301 2.70575 45.0014 2.41295" stroke="%23DFBE65" stroke-width="2" stroke-linecap="round"/></svg>');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: width 0.3s ease-in-out;
+}
+
+.underline-animation::before {
+    z-index: 1;
+}
+
+.underline-animation::after {
+    z-index: 2;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.underline-animation:hover::after {
+    width: 100%;
+    transform: scaleX(1);
+    
+}
+
+/* Tambahan: Ubah warna underline saat hover */
+.underline-animation:hover::before {
+    background-image: url('');
+}
+
+#aside::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgb(58, 58, 58);
+}
+
+#aside::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: rgb(58, 58, 58);
+}
+
+#aside::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
+	background-color: #e1e1e1;
+}
