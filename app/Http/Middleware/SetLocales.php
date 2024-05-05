@@ -19,9 +19,9 @@ class SetLocales
         $locale = $request->segment(1); // Ambil segment pertama dari URL
 
         if (in_array($locale, ['en_id', 'id_id'])) {
-            App::SetLocale($locale); // Set locale aplikasi
+            App::SetLocales($locale); // Set locale aplikasi
         } else {
-            App::SetLocale(config('app.locale')); // Set locale default jika tidak valid
+            App::SetLocales(config('app.locale')); // Set locale default jika tidak valid
         }
 
         return $next($request);
