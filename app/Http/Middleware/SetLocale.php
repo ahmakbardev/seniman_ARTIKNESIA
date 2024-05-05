@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
-class SetLocales
+class SetLocale
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
     public function handle($request, Closure $next)
     {

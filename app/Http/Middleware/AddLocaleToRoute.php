@@ -19,11 +19,11 @@ class AddLocaleToRoute
         $locale = $request->segment(1) ?: config('app.fallback_locale');
 
         // Set the locale for the request
-        app()->SetLocales($locale);
+        app()->SetLocale($locale);
 
         // Add the locale parameter to all routes
-        $request->route()->forgetParameter('locale');
-        $request->route()->setParameter('locale_id', $locale . '_id'); // Menambahkan "_id" setelah $locale
+        // $request->route()->forgetParameter('locale');
+        // $request->route()->setParameter('locale_id', $locale . '_id'); // Menambahkan "_id" setelah $locale
 
         return $next($request);
     }
