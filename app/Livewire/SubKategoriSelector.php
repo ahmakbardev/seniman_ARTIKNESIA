@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\Subkategori;
 use Livewire\Component;
 
-class SubkategoriSelector extends Component
+class SubKategoriSelector extends Component
 {
     public $selectedJenisKarya;
     public $selectedSubKategori;

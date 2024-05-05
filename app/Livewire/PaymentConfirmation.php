@@ -96,7 +96,7 @@ class PaymentConfirmation extends Component
             'password' => bcrypt($this->password),
             'ss_pembayaran' => $imagePath, // Simpan path gambar konfirmasi pembayaran
             'id_seniman' => $idSeniman, // Assign generated id_seniman
-            'status' => 'pending', // Assign generated id_seniman
+        'status' => 'pending', // Assign generated id_seniman
         ]);
 
         // Login pengguna setelah konfirmasi pembayaran
