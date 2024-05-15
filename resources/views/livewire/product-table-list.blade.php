@@ -17,7 +17,7 @@
             <div wire:loading.class="flex mx-auto w-1/2 h-px bg-sky-400 rounded-tl-md rounded-tr-md top-0 animate-ping"></div>
             <thead>
                 <tr
-                    class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    class="text-xs font-semibold tracking-wide text-left  uppercase border-b border-gray-700  text-gray-400 bg-gray-800">
                     <th class="px-4 py-3">Nama Karya</th>
                     <th class="px-4 py-3">Gambar</th>
                     <th class="px-4 py-3">Harga</th>
@@ -26,9 +26,9 @@
                     <th class="px-4 py-3">Kategori</th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+            <tbody class=" divide-y divide-gray-700 bg-gray-800">
                 @foreach ($products as $product)
-                    <tr class="text-gray-700 dark:text-gray-400">
+                    <tr class="text-gray-400">
                         <td class="px-4 py-3">{{ $product->name }}</td>
                         <td class="px-4 py-3">
                             <!-- Show only the first image -->
@@ -42,22 +42,22 @@
                         <td class="px-4 py-3">
                             @if ($product->status == 'pending')
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-xs text-yellow-700 bg-yellow-100 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-xs  rounded-full bg-yellow-700 text-yellow-100">
                                     {{ $product->status }}
                                 </span>
                             @elseif ($product->status == 'confirmed')
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-xs text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-xs rounded-full bg-green-700 text-green-100">
                                     {{ $product->status }}
                                 </span>
                             @elseif ($product->status == 'failed')
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-xs text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-xs rounded-full bg-red-700 text-red-100">
                                     {{ $product->status }}
                                 </span>
                             @else
                                 <span
-                                    class="px-2 py-1 font-semibold leading-tight text-xs text-gray-700 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-100">
+                                    class="px-2 py-1 font-semibold leading-tight text-xs  rounded-full bg-gray-700 text-gray-100">
                                     Unknown Status
                                 </span>
                             @endif
@@ -70,7 +70,7 @@
         </table>
     </div>
     <div
-        class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+        class="grid px-4 py-3 text-xs font-semibold tracking-wide uppercase border-t border-gray-700 sm:grid-cols-9 text-gray-400 bg-gray-800">
         <span class="flex items-center col-span-3">
             Showing {{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }}
         </span>

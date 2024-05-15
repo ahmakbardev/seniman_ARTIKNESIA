@@ -58,7 +58,7 @@
             class="border border-gray-500/55 w-full h-10 rounded mt-1 outline-primary p-2 after:w-[8px] after:h-[8px] appearance-none peer/chev">
             <option>Paket disini</option>
             @foreach ($pakets as $paket)
-                <option value="{{ $paket->id }}">{{ $paket->nama }} - Rp. {{ $paket->harga }}</option>
+                <option value="{{ $paket->id }}">{{ $paket->nama }} - Rp. {{ number_format($paket->harga, 0, ',', '.') }}</option>
             @endforeach
         </select>
         @error('paket')

@@ -23,7 +23,7 @@
 
 
 <body>
-    <div class="flex h-screen bg-gray-50 dark:bg-gray-900 font-montserrat"
+    <div class="flex h-screen bg-gray-900 font-montserrat"
         :class="{ 'overflow-hidden': isSideMenuOpen }">
         {{-- <div class="notifications absolute top-20 right-5 flex flex-col gap-1">
         <div class=" p-3 bg-green-400/50 border border-green-500 text-white rounded-md">aa</div>
@@ -37,7 +37,7 @@
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid overflow-x-hidden">
                     <div class="py-6">
-                        <nav class="text-sm font-medium mt-4 text-gray-500 dark:text-gray-500">
+                        <nav class="text-sm font-medium mt-4 text-gray-500">
                             @php
                                 $segments = '';
                                 $skipLocale = true;
@@ -54,12 +54,12 @@
                                     <span>{{ ucfirst($segment) }}</span>
                                 @else
                                     <a href="{{ url('/', app()->getLocale()) . $segments }}"
-                                        class="hover:text-gray-700 dark:hover:text-gray-400">{{ ucfirst($segment) }}</a>
+                                        class="hover:text-gray-400">{{ ucfirst($segment) }}</a>
                                     <i class="text-[8px] h-full fa-solid fa-angle-right"></i>
                                 @endif
                             @endforeach
                         </nav>
-                        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        <h2 class="text-2xl font-semibold text-gray-200">
                             @stack('title')
                         </h2>
                     </div>
