@@ -22,14 +22,12 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             cd /home/u376682195/domains/sideospary.com/new_artiknesia
-            git clone https://github.com/ahmakbardev/seniman_ARTIKNESIA.git
             chmod +x ~/bin/composer
             echo "export PATH=$HOME/bin:$PATH" >> ~/.bash_profile
             source ~/.bash_profile
             which composer
             composer --version
             cd /home/u376682195/domains/sideospary.com/new_artiknesia/seniman_ARTIKNESIA/
-            cp .env.example .env
             git pull origin develop
             composer install
             composer update
