@@ -24,7 +24,7 @@
         <div class=" p-3 bg-green-400/50 border border-green-500 text-white rounded-md">aa</div>
     </div> --}}
     <!-- Cards -->
-    <div class="grid gap-3 mb-8 md:grid-cols-2 xl:grid-cols-5">
+    <div class="grid gap-3 mb-8 md:grid-cols-2 xl:grid-cols-3">
         <!-- Card -->
         <div class="flex items-center p-4 rounded-lg shadow-xs bg-gray-800">
             <div class="p-3 mr-4  rounded-full text-orange-100 bg-orange-500">
@@ -79,7 +79,7 @@
             </div>
         </div>
         <!-- Card -->
-        <div class="flex items-center p-4 rounded-lg shadow-xsbg-gray-800">
+        {{-- <div class="flex items-center p-4 rounded-lg shadow-xsbg-gray-800">
             <div class="p-3 mr-4 rounded-full text-blue-100 bg-blue-500">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -95,9 +95,9 @@
                     376
                 </p>
             </div>
-        </div>
+        </div> --}}
         <!-- Card -->
-        <div class="flex items-center p-4 rounded-lg shadow-xsbg-gray-800">
+        {{-- <div class="flex items-center p-4 rounded-lg shadow-xsbg-gray-800">
             <div class="p-3 mr-4 rounded-full text-teal-100 bg-teal-500">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd"
@@ -113,7 +113,7 @@
                     35
                 </p>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <!-- New Table -->
@@ -127,7 +127,7 @@
         Charts
     </h2>
     <div class="grid gap-6 mb-8 md:grid-cols-2">
-        <div class="min-w-0 p-4 rounded-lg shadow-xsbg-gray-800">
+        <div class="min-w-0 p-4 rounded-lg shadow-xs text-gray-400 bg-gray-800">
             <h4 class="mb-4 font-semiboldtext-gray-300">
                 Revenue
             </h4>
@@ -148,7 +148,7 @@
                 </div>
             </div>
         </div>
-        <div class="min-w-0 p-4 rounded-lg shadow-xsbg-gray-800">
+        <div class="min-w-0 p-4 rounded-lg shadow-xs text-gray-400 bg-gray-800">
             <h4 class="mb-4 font-semiboldtext-gray-300">
                 Traffic
             </h4>

@@ -23,13 +23,15 @@ class ProductTableList extends Component
 
     public function render()
     {
-        // Mengambil semua produk dari database beserta nama subkategori dengan pagination
+        // Mengambil semua produk dari pengguna yang sedang masuk beserta nama subkategori dengan pagination
         $products = Karya::with('subkategori')
+            ->where('user_id', auth()->id()) // Filter berdasarkan user yang sedang login
             ->where('name', 'like', '%' . $this->search . '%')
             ->paginate(5);
 
         return view('livewire.product-table-list', compact('products'));
     }
+
 
     public function gotoPage($page)
     {
