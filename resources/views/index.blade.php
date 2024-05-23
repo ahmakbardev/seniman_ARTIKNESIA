@@ -127,10 +127,6 @@
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
-                            <p class="text-base font-semibold">Artwork Maks. 5</p>
-                        </div>
-                        <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
                             <p class="text-base font-semibold">Maks. Price 500.000</p>
                         </div>
                         <div class="">
@@ -155,7 +151,7 @@
                         Sekarang</button>
                 </div>
                 <div class="flex flex-col gap-3 p-5 lg:-mt-3 bg-primary py-10 hover:shadow-lg transition-all ease-in-out">
-                    <h1 class="text-2xl font-bold bg-primary text-white">MAESTRO</h1>
+                    <h1 class="text-2xl font-bold bg-primary text-white">PROFESIONAL</h1>
                     <div class="flex gap-2 justify-center my-2">
                         <h1 class="text-2xl font-bold">Rp</h1>
                         <h1 class="text-5xl font-bold">150k</h1>
@@ -176,11 +172,7 @@
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
-                            <p class="text-base font-semibold">Artwork Maks. 5</p>
-                        </div>
-                        <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
-                            <p class="text-base font-semibold">Maks. Price 50.000.000</p>
+                            <p class="text-base font-semibold">Maks. Price 10.000.000</p>
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
@@ -191,11 +183,11 @@
                             <p class="text-base font-semibold">Grup Ekslusif</p>
                         </div>
                         <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
+                            <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
                             <p class="text-base font-semibold">Kesempatan Pameran</p>
                         </div>
                         <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
+                            <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
                             <p class="text-base font-semibold">Artwork Certificate</p>
                         </div>
                     </div>
@@ -204,7 +196,7 @@
                         Sekarang</button>
                 </div>
                 <div class="flex flex-col gap-3 p-5 h-fit lg:mt-5 hover:shadow-lg transition-all ease-in-out">
-                    <h1 class="text-2xl font-bold text-primary">PROFESIONAL</h1>
+                    <h1 class="text-2xl font-bold text-primary">MAESTRO</h1>
                     <div class="flex gap-2 justify-center my-2">
                         <h1 class="text-2xl font-bold">Rp</h1>
                         <h1 class="text-5xl font-bold">400k</h1>
@@ -225,26 +217,22 @@
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
-                            <p class="text-base font-semibold">Artwork Maks. 5</p>
-                        </div>
-                        <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
-                            <p class="text-base font-semibold">Maks. Price 10.000.000</p>
+                            <p class="text-base font-semibold">Maks. Price 50.000.000</p>
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
                             <p class="text-base font-semibold">Kesempatan Projek</p>
                         </div>
                         <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
+                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
                             <p class="text-base font-semibold">Grup Ekslusif</p>
                         </div>
                         <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
+                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
                             <p class="text-base font-semibold">Kesempatan Pameran</p>
                         </div>
                         <div class="">
-                            <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
+                            <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
                             <p class="text-base font-semibold">Artwork Certificate</p>
                         </div>
                     </div>
