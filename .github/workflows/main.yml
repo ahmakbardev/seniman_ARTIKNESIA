@@ -37,4 +37,3 @@ jobs:
             php artisan route:clear
             php artisan config:cache
             php artisan optimize
-            ln -s /home/u376682195/domains/sideospary.com/new_artiknesia/seniman_ARTIKNESIA/public /home/u376682195/domains/sideospary.com/public_html/seniman
