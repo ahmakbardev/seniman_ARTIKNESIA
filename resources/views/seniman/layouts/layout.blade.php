@@ -36,7 +36,7 @@
 
         <div class="flex flex-col flex-1 w-full">
             @include('seniman.layouts.components.header')
-            <main class="h-full overflow-y-auto">
+            <main class="h-full overflow-y-auto bg-gray-500">
                 <div class="container px-6 mx-auto grid overflow-x-hidden">
                     <div class="py-6">
                         <nav class="text-sm font-medium mt-4 text-gray-500">
