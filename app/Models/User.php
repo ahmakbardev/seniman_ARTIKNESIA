@@ -25,6 +25,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
     protected static function booted()
     {
         static::creating(function ($user) {

@@ -87,15 +87,15 @@
             <h1 class="text-4xl font-semibold">Pencapaian ARTIKNESIA</h1>
             <div class="w-full grid *:my-5 md:grid-cols-3 my-10">
                 <div class="flex flex-col gap-3 text-center">
-                    <h1 class="text-6xl font-extrabold text-primary">100+</h1>
+                    <h1 class="text-5xl font-extrabold text-primary">100+</h1>
                     <h1 class="text-2xl font-bold text-primary-darker">ARTIST</h1>
                 </div>
                 <div class="flex flex-col gap-3 text-center">
-                    <h1 class="text-6xl font-extrabold text-primary">100+</h1>
+                    <h1 class="text-5xl font-extrabold text-primary">100+</h1>
                     <h1 class="text-2xl font-bold text-primary-darker">ARTWORK</h1>
                 </div>
                 <div class="flex flex-col gap-3 text-center">
-                    <h1 class="text-6xl font-extrabold text-primary">10+</h1>
+                    <h1 class="text-5xl font-extrabold text-primary">10+</h1>
                     <h1 class="text-2xl font-bold text-primary-darker">PROJECT</h1>
                 </div>
             </div>

@@ -34,7 +34,7 @@ class RedirectIfAuthenticated
             App::SetLocale('id_id');
 
             // Redirect to the user's dashboard page
-            return Redirect::to(route('dashboard.seniman', ['locale' => 'id_id']));
+            return Redirect::to(route('dashboard.seniman', ['locale' => 'id']));
         }
 
         // If the user is not authenticated, proceed with the request

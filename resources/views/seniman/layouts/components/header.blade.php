@@ -1,156 +1,150 @@
-<header class="z-10 py-4 shadow-md bg-gray-800">
-    <div class="container flex items-center justify-between h-full px-6 mx-auto text-purple-300">
-        <!-- Mobile hamburger -->
-        <button class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
-            @click="toggleSideMenu" aria-label="Menu">
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"></path>
+<div class="header">
+    <!-- navbar -->
+    <nav class="bg-white px-6 py-[10px] flex items-center justify-between shadow-sm">
+        <a id="nav-toggle" href="#" class="text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-        </button>
-        <!-- Search input -->
-        <div class="flex justify-center flex-1 lg:mr-32">
-            <div class="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
-                <div class="absolute inset-y-0 flex items-center pl-2">
-                    <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input
-                    class="w-full pl-8 py-3 pr-2 text-sm text-gray-700  border-0 rounded-md placeholder-gray-500 focus:shadow-outline-gray focus:placeholder-gray-600 bg-gray-700 text-black-200  focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
-                    type="text" placeholder="Search for projects" aria-label="Search" />
-            </div>
+        </a>
+        <div class="ml-3 hidden md:hidden lg:block">
+            <!-- form -->
+            <form class="flex items-center">
+                <input type="search"
+                    class="border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                    placeholder="Search" />
+            </form>
         </div>
-        <ul class="flex items-center flex-shrink-0 space-x-6">
-            <!-- Theme toggler -->
-            <li class="flex">
-                <button class="rounded-md focus:outline-none focus:shadow-outline-purple" @click="toggleTheme"
-                    aria-label="Toggle color mode">
-                    <template x-if="!dark">
-                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z">
-                            </path>
-                        </svg>
-                    </template>
-                    <template x-if="dark">
-                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </template>
-                </button>
-            </li>
-            <!-- Notifications menu -->
-            <li class="relative">
-                <button class="relative align-middle rounded-md focus:outline-none focus:shadow-outline-purple"
-                    @click="toggleNotificationsMenu" @keydown.escape="closeNotificationsMenu" aria-label="Notifications"
-                    aria-haspopup="true">
-                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
-                        </path>
+        <!-- navbar nav -->
+        <ul class="flex ml-auto items-center">
+            <li class="dropdown stopevent mr-2">
+                <a class="text-gray-600" href="#" role="button" id="dropdownNotification"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
                     </svg>
-                    <!-- Notification badge -->
-                    <span aria-hidden="true"
-                        class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 rounded-full border-gray-800"></span>
-                </button>
-                <template x-if="isNotificationsMenuOpen">
-                    <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0" @click.away="closeNotificationsMenu"
-                        @keydown.escape="closeNotificationsMenu"
-                        class="absolute right-0 w-56 p-2 mt-2 space-y-2 border rounded-md shadow-md text-gray-300 border-gray-700 bg-gray-700">
-                        <li class="flex">
-                            <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-800 hover:text-gray-200"
-                                href="#">
-                                <span>Messages</span>
-                                <span
-                                    class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none  rounded-full text-red-100 bg-red-600">
-                                    13
-                                </span>
-                            </a>
-                        </li>
-                        <li class="flex">
-                            <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md  hover:bg-gray-800 hover:text-gray-200"
-                                href="#">
-                                <span>Sales</span>
-                                <span
-                                    class="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none  rounded-full text-red-100 bg-red-600">
-                                    2
-                                </span>
-                            </a>
-                        </li>
-                        <li class="flex">
-                            <a class="inline-flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-800 hover:text-gray-200"
-                                href="#">
-                                <span>Alerts</span>
-                            </a>
-                        </li>
-                    </ul>
-                </template>
-            </li>
-            <!-- Profile menu -->
-            <li class="relative">
-                <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
-                    @click="toggleProfile" @keydown.escape="closeProfile" aria-label="Account" aria-haspopup="true">
-                    <img class="object-cover w-8 h-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                        alt="" aria-hidden="true" />
-                </button>
-                <template x-if="isProfileOpen">
-                    <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0" @click.away="closeProfile" @keydown.escape="closeProfile"
-                        class="absolute right-0 w-56 p-2 mt-2 space-y-2 border rounded-md shadow-md border-gray-700 text-gray-300 bg-gray-700"
-                        aria-label="submenu">
-                        <li class="flex">
-                            <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md  hover:bg-gray-800 hover:text-gray-200"
-                                href="#">
-                                <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
-                                    </path>
-                                </svg>
-                                <span>Profile</span>
-                            </a>
-                        </li>
-                        <li class="flex">
-                            <a class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md  hover:bg-gray-800 hover:text-gray-200"
-                                href="#">
-                                <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path
-                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                                    </path>
-                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                        <li class="flex w-full">
-                            <form class="w-full" action="{{ route('logout', ['locale' => app()->getLocale()]) }}" method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md  hover:bg-gray-800 hover:text-gray-200">
-                                    <svg class="w-4 h-4 mr-3" aria-hidden="true" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path
-                                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1">
-                                        </path>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg lg:left-auto lg:right-0"
+                    aria-labelledby="dropdownNotification">
+                    <div>
+                        <div class="border-b px-3 pt-2 pb-3 flex justify-between items-center">
+                            <span class="text-lg text-gray-800 font-semibold">Notifications</span>
+                            <a href="#">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
-                                    <span>Log out</span>
+                                </span>
+                            </a>
+                        </div>
+                        <!-- list group -->
+                        <ul class="h-56" data-simplebar="">
+                            <!-- list group item -->
+                            <li class="bg-gray-100 px-3 py-2 border-b">
+                                <a href="#">
+                                    <h5 class="mb-1">Rishi Chopra</h5>
+                                    <p class="mb-0">Mauris blandit erat id nunc blandit, ac eleifend
+                                        dolor pretium.</p>
+                                </a>
+                            </li>
+                            <!-- list group item -->
+                            <li class="px-3 py-2 border-b">
+                                <a href="#">
+                                    <h5 class="mb-1">Neha Kannned</h5>
+                                    <p class="mb-0">Proin at elit vel est condimentum elementum id in
+                                        ante. Maecenas et sapien metus.</p>
+                                </a>
+                            </li>
+                            <!-- list group item -->
+                            <li class="px-3 py-2 border-b">
+                                <a href="#">
+                                    <h5 class="mb-1">Nirmala Chauhan</h5>
+                                    <p class="mb-0">Morbi maximus urna lobortis elit sollicitudin
+                                        sollicitudieget elit vel pretium.</p>
+                                </a>
+                            </li>
+                            <!-- list group item -->
+                            <li class="px-3 py-2 border-b">
+                                <a href="#">
+                                    <h5 class="mb-1">Sina Ray</h5>
+                                    <p class="mb-0">Sed aliquam augue sit amet mauris volutpat
+                                        hendrerit sed nunc eu diam.</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="border-top px-3 py-2 text-center">
+                            <a href="#" class="text-gray-800 font-semibold">View all
+                                Notifications</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- list -->
+            <li class="dropdown ml-2">
+                <a class="rounded-full" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <div class="w-10 h-10 relative">
+                        <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-1.jpg') }}"
+                            class="rounded-full" />
+                        <div
+                            class="absolute border-gray-200 border-2 rounded-full right-0 bottom-0 bg-green-600 h-3 w-3">
+                        </div>
+                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser">
+                    <div class="px-4 pb-0 pt-2">
+                        <div class="leading-4">
+                            <h5 class="mb-1">John E. Grainger</h5>
+                            <a href="#">View my profile</a>
+                        </div>
+                        <div class="border-b mt-3 mb-2"></div>
+                    </div>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('seniman.profile.index', ['locale'=> app()->getLocale()]) }}">
+                                <i class="w-4 h-4" data-feather="user"></i>
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="w-4 h-4" data-feather="activity"></i>
+                                Activity Log
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="w-4 h-4" data-feather="star"></i>
+                                Go Pro
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="w-4 h-4" data-feather="settings"></i>
+                                Account Settings
+                            </a>
+                        </li>
+                        <li>
+                            <form
+                                action="{{ route('logout', ['locale' => app()->getLocale()]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="w-4 h-4" data-feather="power"></i>
+                                    Sign Out
                                 </button>
                             </form>
-
                         </li>
-
                     </ul>
-                </template>
+                </div>
             </li>
         </ul>
-    </div>
-</header>
+    </nav>
+</div>

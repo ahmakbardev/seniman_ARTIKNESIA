@@ -1,111 +1,147 @@
-<div>
-    @push('title', 'Profile Kamu')
-    <span
-        class="flex items-center justify-between p-4 mb-8 text-sm font-semibold bg-primary rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">
-        <div class="flex items-center">
-            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                </path>
-            </svg>
-            <!-- Tampilkan nama paket -->
-            <span>Selamat kamu berlangganan {{ $user->paket->nama }}</span>
-        </div>
-        <span>View more &RightArrow;</span>
-    </span>
-
-    <!-- Cards -->
-    <div class="grid gap-3 mb-8">
-        <!-- Card -->
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-6 gap-3 bg-white rounded-lg shadow-xs dark:bg-gray-800 relative">
-            <div
-                class="p-3 max-lg:mx-auto sm:max-lg:col-span-2 max-lg:my-3 aspect-square min-w-24 max-w-48 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-primary">
-                <img class="aspect-square rounded-full"
-                    src="{{ asset($user->profile_pic ?: 'assets/images/login/banner.png') }}" alt="">
+<div class="mb-8 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="card shadow col-span-3">
+        <!-- card body -->
+        <div class="card-body">
+            <div class="mb-6">
+                <!-- title -->
+                <h4 class="mb-1">General Settings</h4>
             </div>
-            <div class="flex flex-col justify-between">
-                <!-- Jika sedang mode edit, tampilkan input untuk username -->
-                @if ($isEditing)
-                    <input type="text" wire:model="username"
-                        class="block w-full mt-1 text-sm border-gray-600 p-3 rounded-md bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input">
-                @else
-                    <p class="text-2xl font-semibold text-gray-700 dark:text-gray-200 truncate hover:text-clip">
-                        {{ $user->username }}</p>
-                @endif
-                <!-- Tampilkan nama subkategori -->
-                <p class="text-base font-semibold text-gray-500 ">{{ $subkategoriName }} artist</p>
-
-                <div class="flex flex-col">
-                    <p class="text-base mt-5 font-semibold text-gray-300">Bio</p>
-                    <!-- Jika sedang mode edit, tampilkan input untuk deskripsi diri -->
-                    @if ($isEditing)
-                        <textarea wire:model="deskripsiDiri"
-                            class="block w-full mt-1 text-sm border-gray-600 p-3 rounded-md bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input"
-                            style="resize: none"></textarea>
-                    @else
-                        <p class="text-base font-semibold text-gray-500">
-                            {{ $user->deskripsi_diri ?: 'Belum ada deskripsi diri' }}</p>
-                    @endif
-                    <p class="text-base mt-3 font-semibold text-gray-300">Alamat</p>
-                    <!-- Jika sedang mode edit, tampilkan input untuk alamat -->
-                    @if ($isEditing)
-                        <input type="text" wire:model="alamat"
-                            class="block w-full mt-1 text-sm border-gray-600 p-3 rounded-md bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple text-gray-300 focus:shadow-outline-gray form-input">
-                    @else
-                        <p class="text-base font-semibold text-gray-500">{{ $user->alamat }}</p>
-                    @endif
+            <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                <div class="flex-1 text-gray-800 font-semibold">
+                    <h5 class="mb-0">Avatar</h5>
+                </div>
+                <div class="flex-[3]">
+                    <div class="flex items-center relative">
+                        <!-- image -->
+                        <div class="me-3">
+                            <img src="{{ $profile_pic ? asset('storage/' . $profile_pic) : asset('assets/images/default-profile.jpg') }}"
+                                class="rounded-full w-16 h-16 object-cover" alt="" />
+                        </div>
+                        <div>
+                            <!-- input file -->
+                            <input type="file" wire:model="new_profile_pic" class="hidden" id="profile_pic_input">
+                            <label for="profile_pic_input"
+                                class="btn gap-x-2 bg-white text-gray-800 border-gray-300 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 cursor-pointer">
+                                Change
+                            </label>
+                            @if ($profile_pic)
+                                <button type="button" wire:click="$set('profile_pic', null)"
+                                    class="btn gap-x-2 bg-white text-gray-800 border-gray-300 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-gray-700 hover:border-gray-700 active:bg-gray-700 active:border-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                                    Remove
+                                </button>
+                            @endif
+                        </div>
+                        @if ($uploadSuccess)
+                            <div
+                                id="upload-success"
+                                class="absolute inset-0 flex items-center justify-center bg-green-500 text-white text-sm font-bold p-2 rounded transition-opacity duration-500 opacity-0">
+                                Upload Successful!
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-col justify-end">
-                <p class="text-base font-semibold text-gray-200">ID_Seniman</p>
-                <!-- Tampilkan email -->
-                <p class="text-base font-semibold text-gray-500">{{ $user->id_seniman }}</p>
 
-                <p class="text-base mt-3 font-semibold text-gray-200">Email</p>
-                <!-- Tampilkan email -->
-                <p class="text-base font-semibold text-gray-500">{{ $user->email }}</p>
-                <p class="text-base mt-3 font-semibold text-gray-300">Jenis karya</p>
-                <!-- Tampilkan nama jenis karya -->
-                <p class="text-base font-semibold text-gray-500">{{ $user->jenisKarya->nama }}</p>
-                <p class="text-base mt-3 font-semibold text-gray-300">Kategori</p>
-                <!-- Tampilkan nama subkategori -->
-                <p class="text-base font-semibold text-gray-500">{{ $subkategoriName }}</p>
-            </div>
-            <div class="flex gap-3 items-center h-fit absolute top-3 right-3 xl:relative">
-                <!-- Jika belum mode edit, tampilkan tombol Edit Data -->
-                @if (!$isEditing)
-                    <div wire:click="edit" class="flex gap-3 items-center h-fit">
-                        <button
-                            class="order-2 xl:order-1 btn-color-outline peer h-fit bg-transparent rounded-full px-3 aspect-square hover:btn-color-fill hover:text-black transition-all ease-in-out"><i
-                                class="fa-solid fa-pen"></i></button>
-                        <p
-                            class="order-1 xl:order-2 text-white peer-hover:bg-primary peer-hover:text-black peer-hover:px-4 peer-hover:py-2 peer-hover:font-semibold invisible peer-hover:visible rounded-md transition-all ease-in-out">
-                            Edit Data</p>
+            <div>
+                <!-- border -->
+                <div class="mb-6">
+                    <h4 class="mb-1">Basic information</h4>
+                </div>
+                <form wire:submit.prevent="submit">
+                    <!-- input -->
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <label for="username" class="flex-1 text-gray-800 font-semibold">Username</label>
+                        <div class="flex-[3] w-full">
+                            <input type="text" wire:model="username"
+                                class="border border-gray-300 text-gray-900 rounded focus:ring-1 outline-none focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                                placeholder="Username" id="username" required />
+                        </div>
                     </div>
 
-                    <!-- Jika sudah mode edit, tampilkan tombol Submit dan Cancel -->
-                @else
-                    <div class="relative">
-                        <button wire:click="cancel"
-                            class="btn-color-outline hover:ring-0 peer h-fit bg-transparent rounded-full px-4 pt-1 aspect-square hover:bg-red-500 hover:text-black transition-all ease-in-out">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                        <p
-                            class="hidden md:inline text-white absolute text-xs top-1/2 -translate-y-1/2 -left-20 peer-hover:bg-primary peer-hover:text-black peer-hover:px-4 peer-hover:py-2 peer-hover:font-semibold invisible peer-hover:visible rounded-md transition-all ease-in-out">
-                            Cancel</p>
+                    <!-- input -->
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <label for="email" class="flex-1 text-gray-800 font-semibold">Email</label>
+                        <div class="flex-[3] w-full">
+                            <input type="email" wire:model="email"
+                                class="border border-gray-300 text-gray-900 rounded focus:ring-1 outline-none focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                                placeholder="Email" id="email" required />
+                        </div>
                     </div>
-                    <div class="relative">
-                        <button wire:click="submit"
-                            class="btn-color-fill text-black peer h-fit rounded-full px-4 pt-1 aspect-square hover:bg-transparent hover:bg-green-500 transition-all ease-in-out">
-                            <i class="fa-solid fa-check"></i>
-                        </button>
-                        <p
-                            class="hidden md:inline text-white absolute text-xs top-1/2 -translate-y-1/2 -right-20 peer-hover:bg-primary peer-hover:text-black peer-hover:px-4 peer-hover:py-2 peer-hover:font-semibold invisible peer-hover:visible rounded-md transition-all ease-in-out">
-                            Cancel</p>
+                    <!-- input -->
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <label for="phone" class="flex-1 text-gray-800 font-semibold">
+                            Phone
+                            <span>(Optional)</span>
+                        </label>
+                        <div class="flex-[3] w-full">
+                            <input type="text" wire:model="phone"
+                                class="border border-gray-300 text-gray-900 rounded focus:ring-1 outline-none focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                                placeholder="Phone" id="phone" />
+                        </div>
                     </div>
-                @endif
+                    <!-- input -->
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <label for="province" class="flex-1 text-gray-800 font-semibold">Province</label>
+                        <div class="flex-[3] w-full">
+                            <select wire:model="selectedProvince" wire:change="loadCities"
+                                class="text-base border border-gray-300 rounded focus:ring-1 outline-none focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                                id="province">
+                                <option value="">Select Province</option>
+                                @foreach ($provinces as $province)
+                                    <option value="{{ $province->id }}">{{ $province->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <!-- input -->
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <label for="city" class="flex-1 text-gray-800 font-semibold">City</label>
+                        <div class="flex-[3] w-full">
+                            <select wire:model="selectedCity"
+                                class="text-base border border-gray-300 rounded focus:ring-1 outline-none focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                                id="city">
+                                <option value="">Select City</option>
+                                @foreach ($cities as $city)
+                                    <option value="{{ $city->id }}">{{ $city->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <!-- input -->
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <label for="bio" class="flex-1 text-gray-800 font-semibold">Bio</label>
+                        <div class="flex-[3] w-full">
+                            <textarea wire:model="bio"
+                                class="border border-gray-300 text-gray-900 rounded focus:ring-1 outline-none focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
+                                placeholder="Bio" id="bio" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
+                        <div class="flex-1 text-gray-800 font-semibold"></div>
+                        <div class="flex-[3]">
+                            <button type="submit"
+                                class="btn bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+    <script>
+        Livewire.on('profilePicUpdated', () => {
+            const uploadSuccess = document.getElementById('upload-success');
+            uploadSuccess.classList.remove('opacity-0');
+            uploadSuccess.classList.add('opacity-100');
+    
+            setTimeout(() => {
+                uploadSuccess.classList.remove('opacity-100');
+                uploadSuccess.classList.add('opacity-0');
+            }, 2000); // 2 seconds
+        });
+    </script>
 </div>
+
+{{-- @push('scripts')
+@endpush --}}

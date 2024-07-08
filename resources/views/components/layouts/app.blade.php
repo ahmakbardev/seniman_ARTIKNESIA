@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('seniman.layouts.layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DAFTAR ARTIKNESIA</title>
-    @include('layouts.components.styles')
-    @livewireStyles
-</head>
 
-<body>
+@section('assets')
+    <link rel="stylesheet" href="{{ asset('assets/libs/dropzone/dist/dropzone.css') }}" />
+@endsection
+
+@section('seniman_content')
     {{ $slot }}
 
-    @livewireScripts
-</body>
+    @if (in_array(Route::currentRouteName(), ['seniman.profile.index']))
 
-</html>
+    @endif
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/libs/dropzone/dist/dropzone-min.js') }}"></script>
+@endsection

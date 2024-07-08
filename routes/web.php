@@ -3,8 +3,14 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
 use App\Livewire\EmailVerification;
+use App\Livewire\ExperienceForm;
+use App\Livewire\ExperienceList;
 use App\Livewire\PaymentConfirmation;
+use App\Livewire\ProfileSeniman;
 use App\Livewire\RegisterForm;
 use App\Livewire\TambahKarya;
 use Illuminate\Support\Facades\Route;
@@ -34,31 +40,50 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::get('/payment/confirmation', PaymentConfirmation::class)->name('payment.confirmation');
+Route::get('/payment/confirmation', function () {
+    return view('payment-confirmation');
+})->name('payment.confirmation');
+Route::get('/provinces', [LocationController::class, 'getProvinces']);
+Route::get('/cities/{provinceId}', [LocationController::class, 'getCities']);
+Route::post('/upload-profile-pic', [ProfileController::class, 'uploadProfilePic'])->name('profile.upload');
+
 
 // Route::get('/register', RegisterForm::class)->name('register');
 Route::middleware('auth')->group(function () {
-    Route::get('/verify-email', EmailVerification::class)->name('verification.notice');
+    Route::get('/verify-email', function () {
+        return view('payment-confirmation');
+    })->name('verification.notice');
 
+    // Route::get('/experiences', ExperienceList::class)->name('experiences.index');
+
+    Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
     // Tambahkan prefix 'en_id' dan 'id_id' ke grup rute
-    Route::prefix('{locale}')->middleware('verified')->where(['locale' => 'en_id|id_id'])->group(function () {
+    Route::prefix('{locale}')->middleware('verified')->where(['locale' => 'en|id'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::get('/experiences/add', ExperienceForm::class)->name('experiences.add');
+        Route::get('/experiences/edit/{experienceId}', ExperienceForm::class)->name('experiences.edit');
 
         Route::prefix('/dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard.seniman');
         });
 
-        Route::middleware('verified')->prefix('seniman')->group(function () {
-            Route::get('/', function () {
-                return view('seniman.profile');
+        Route::middleware('verified')->prefix('seniman')->as('seniman.')->group(function () {
+            Route::prefix('profile')->as('profile.')->group(function () {
+                Route::get('/', function () {
+                    return view('seniman.profile.index');
+                })->name('index');
+                // Route::get('/edit', function () {
+                //     return view('seniman.profile.index');
+                // })->name('edit');
+                Route::get('/edit', ProfileSeniman::class)->name('edit');
             });
 
             // Route::get('/', function() {
             //     return view('seniman.profile');
             // })->name('dashboard.seniman');
             // Tambahkan parameter {locale} ke URI route logout
-
-            Route::prefix('karya')->group(function () {
+            Route::prefix('karya')->as('karya.')->group(function () {
                 Route::get('/tambah', function () {
                     return view('seniman.karya.tambah');
                 })->name('tambah-karya');
