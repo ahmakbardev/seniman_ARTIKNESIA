@@ -10,7 +10,18 @@ class Karya extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'user_id', 'images', 'size_x', 'size_y', 'weight', 'material', 'philosophy', 'price', 'stock', 'category_id', 'status', 'messages'
+        'user_id',
+        'name',
+        'images',
+        'size_x',
+        'size_y',
+        'weight',
+        'material',
+        'philosophy',
+        'price',
+        'stock',
+        'category_id',
+        'status',
     ];
 
     // Relasi dengan User

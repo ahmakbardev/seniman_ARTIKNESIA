@@ -2,7 +2,7 @@
     <div id="myScrollableElement" class="h-screen" data-simplebar>
         <!-- brand logo -->
         <a class="navbar-brand" href="{{ route('dashboard.seniman', ['locale' => app()->getLocale()]) }}">
-            <img src="{{ asset('assets/images/brand/logo/logo.svg') }}" alt="" />
+            <img src="{{ asset('assets/images/logo/artiknesia.svg') }}" alt="" />
         </a>
 
         <!-- navbar nav -->
@@ -18,16 +18,18 @@
                 <div class="navbar-heading">Fitur</div>
             </li>
             <!-- nav item -->
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navPages"
                     aria-expanded="false" aria-controls="navPages">
                     <i data-feather="layers" class="w-4 h-4 mr-2"></i>
-                    Products
+                    Produk
                 </a>
                 <div id="navPages" class="collapse " data-bs-parent="#sideNavbar">
                     <ul class="nav flex-col">
                         <li class="nav-item">
-                            <a class="nav-link " href="./profile.html">Profile</a>
+                            <a class="nav-link "
+                                href="{{ route('seniman.karya.index', ['locale' => app()->getLocale()]) }}">List
+                                Produk</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="./settings.html">Settings</a>
@@ -45,7 +47,7 @@
                         </li>
                     </ul>
                 </div>
-            </li> --}}
+            </li>
             {{-- <li class="nav-item">
                 <a class="nav-link  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#navPages"
                     aria-expanded="false" aria-controls="navPages">

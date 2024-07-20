@@ -6,18 +6,20 @@
         </div>
     </div> --}}
 
-    <div wire:loading class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-5">
-        <div class="max-h-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full max-w-md overflow-y-auto sm:rounded-2xl bg-white">
-          <div class="w-full">
-            <div class="m-8 my-10 max-w-[400px] mx-auto">
-              <div class="mb-8">
-                <h1 class="mb-4 text-3xl font-extrabold">Loading ...</h1>
-                <p class="text-gray-600">Tunggu sebentar ..</p>
-              </div> 
+    <div wire:loading
+        class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-5">
+        <div
+            class="max-h-full absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full max-w-md overflow-y-auto sm:rounded-2xl bg-white">
+            <div class="w-full">
+                <div class="m-8 my-10 max-w-[400px] mx-auto">
+                    <div class="mb-8">
+                        <h1 class="mb-4 text-3xl font-extrabold">Loading ...</h1>
+                        <p class="text-gray-600">Tunggu sebentar ..</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     <div class=" border max-w-screen-xs p-5 rounded-xl">
         <form wire:submit.prevent="submitConfirmation" class="flex flex-col gap-3" enctype="multipart/form-data">

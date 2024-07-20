@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadController;
@@ -84,9 +85,11 @@ Route::middleware('auth')->group(function () {
             // })->name('dashboard.seniman');
             // Tambahkan parameter {locale} ke URI route logout
             Route::prefix('karya')->as('karya.')->group(function () {
-                Route::get('/tambah', function () {
-                    return view('seniman.karya.tambah');
-                })->name('tambah-karya');
+                Route::get('/list', [KaryaController::class, 'index'])->name('index');
+                Route::get('/tambah', [KaryaController::class, 'create'])->name('tambah-karya');
+                Route::post('/tambah', [KaryaController::class, 'store'])->name('store');
+                Route::get('/edit/{karya}', [KaryaController::class, 'edit'])->name('edit');
+                Route::put('/update/{karya}', [KaryaController::class, 'update'])->name('update');
             });
         });
     });

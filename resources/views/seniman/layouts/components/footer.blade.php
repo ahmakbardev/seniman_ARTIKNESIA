@@ -2,7 +2,7 @@
     <div class="px-6 border-t border-gray-300 py-3 flex justify-between items-center">
         <p class="m-0 leading-6">
             Made by
-            <a href="https://codescandy.com/" target="_blank" class="text-indigo-600">Codescandy</a>
+            <a href="#" target="_blank" class="text-indigo-600">ARTIKNESIA</a>
         </p>
         <a href="https://github.com/codescandy/dashui-tailwindcss" target="_blank">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="h-6 w-6 fill-gray-800">
