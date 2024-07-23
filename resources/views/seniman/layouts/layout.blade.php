@@ -21,8 +21,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
 
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- Append version number to CSS file name -->
+    <link rel="stylesheet" href="{{ asset('css/app.css?v=1.04') }}">
+    <!-- Add cache-control headers for CSS and JavaScript files -->
+    <link rel="preload" href="{{ asset('css/app.css?v=1.04') }}" as="style" crossorigin="anonymous" />
 
     @yield('assets')
     @livewireStyles
@@ -68,7 +70,8 @@
     @if (session('showPasswordModal'))
         <div id="passwordModal"
             class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 opacity-0">
-            <div class="bg-white rounded-lg shadow-lg transform w-full max-w-md transition-transform duration-500 translate-y-10">
+            <div
+                class="bg-white rounded-lg shadow-lg transform w-full max-w-md transition-transform duration-500 translate-y-10">
                 <div class="p-6 text-center">
                     <h2 class="text-2xl font-semibold mb-4">Ganti Password</h2>
                     <form method="POST" action="{{ route('update-password', ['locale' => app()->getLocale()]) }}">
@@ -79,7 +82,8 @@
                                 class="w-full mt-2 p-2 border border-gray-300 rounded">
                         </div>
                         <div class="mb-4">
-                            <label for="new_password_confirmation" class="block text-start text-gray-700">Konfirmasi Password
+                            <label for="new_password_confirmation" class="block text-start text-gray-700">Konfirmasi
+                                Password
                                 Baru</label>
                             <input type="password" name="new_password_confirmation" id="new_password_confirmation"
                                 class="w-full mt-2 p-2 border border-gray-300 rounded">

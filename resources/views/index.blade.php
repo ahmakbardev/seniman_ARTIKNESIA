@@ -109,7 +109,7 @@
                     <h1 class="text-2xl font-bold text-primary">PEMULA</h1>
                     <div class="flex gap-2 justify-center my-2">
                         <h1 class="text-2xl font-bold">Rp</h1>
-                        <h1 class="text-5xl font-bold">70k</h1>
+                        <h1 class="text-5xl font-bold">90k</h1>
                         <h1 class="text-base self-end">/tahun</h1>
                     </div>
                     <div class="flex flex-col gap-3 *:flex *:gap-2 *:items-center">
