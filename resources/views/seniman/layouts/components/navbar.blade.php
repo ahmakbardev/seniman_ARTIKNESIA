@@ -40,10 +40,10 @@
                                 href="{{ route('seniman.karya.index', ['locale' => app()->getLocale()]) }}">List
                                 Produk</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link text-base {{ $currentRouteName == 'settings' ? 'active' : '' }}"
                                 href="./settings.html">Pembelian Produk</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>
