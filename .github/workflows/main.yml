@@ -24,6 +24,7 @@ jobs:
             cd /home/u982131153/domains/artiknesia.com/
             git clone https://github.com/ahmakbardev/seniman_ARTIKNESIA.git
             cd /home/u982131153/domains/artiknesia.com/seniman_ARTIKNESIA
+            git pull
             chmod +x ~/bin/composer
             echo "export PATH=$HOME/bin:$PATH" >> ~/.bash_profile
             source ~/.bash_profile
