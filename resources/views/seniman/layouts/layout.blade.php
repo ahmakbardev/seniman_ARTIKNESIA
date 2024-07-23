@@ -65,6 +65,35 @@
         <!-- end of project -->
     </main>
 
+    @if (session('showPasswordModal'))
+        <div id="passwordModal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 opacity-0">
+            <div class="bg-white rounded-lg shadow-lg transform w-full max-w-md transition-transform duration-500 translate-y-10">
+                <div class="p-6 text-center">
+                    <h2 class="text-2xl font-semibold mb-4">Ganti Password</h2>
+                    <form method="POST" action="{{ route('update-password', ['locale' => app()->getLocale()]) }}">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="new_password" class="block text-start text-gray-700">Password Baru</label>
+                            <input type="password" name="new_password" id="new_password"
+                                class="w-full mt-2 p-2 border border-gray-300 rounded">
+                        </div>
+                        <div class="mb-4">
+                            <label for="new_password_confirmation" class="block text-start text-gray-700">Konfirmasi Password
+                                Baru</label>
+                            <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                                class="w-full mt-2 p-2 border border-gray-300 rounded">
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-primary text-white px-4 py-2 rounded">Ganti
+                                Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.2/feather.min.js"
         integrity="sha512-zMm7+ZQ8AZr1r3W8Z8lDATkH05QG5Gm2xc6MlsCdBz9l6oE8Y7IXByMgSm/rdRQrhuHt99HAYfMljBOEZ68q5A=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -82,6 +111,17 @@
     <!-- Theme JS -->
     <script src="{{ asset('js/theme.js') }}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if ({{ session('showPasswordModal') ? 'true' : 'false' }}) {
+                setTimeout(() => {
+                    const modal = document.getElementById('passwordModal');
+                    modal.classList.remove('opacity-0', 'translate-y-10');
+                    modal.classList.add('opacity-100', 'translate-y-0');
+                }, 1000); // Delay 1 detik
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -59,12 +59,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
     // Tambahkan prefix 'en_id' dan 'id_id' ke grup rute
-    Route::prefix('{locale}')->middleware('verified')->where(['locale' => 'en|id'])->group(function () {
+    Route::prefix('{locale}')->middleware(['verified', 'check.password'])->where(['locale' => 'en|id'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
         Route::prefix('/dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard.seniman');
+            Route::post('/update-password', [DashboardController::class, 'updatePassword'])->name('update-password');
         });
 
         Route::middleware('verified')->prefix('seniman')->as('seniman.')->group(function () {
