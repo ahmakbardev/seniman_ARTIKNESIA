@@ -62,8 +62,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('{locale}')->middleware('verified')->where(['locale' => 'en|id'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        Route::get('/experiences/add', ExperienceForm::class)->name('experiences.add');
-        Route::get('/experiences/edit/{experienceId}', ExperienceForm::class)->name('experiences.edit');
 
         Route::prefix('/dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard.seniman');
@@ -71,12 +69,12 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('verified')->prefix('seniman')->as('seniman.')->group(function () {
             Route::prefix('profile')->as('profile.')->group(function () {
-                Route::get('/', function () {
-                    return view('seniman.profile.index');
-                })->name('index');
+                Route::get('/', [ProfileController::class, 'show'])->name('index');
                 // Route::get('/edit', function () {
                 //     return view('seniman.profile.index');
                 // })->name('edit');
+                Route::get('/experiences/add', ExperienceForm::class)->name('experiences.add');
+                Route::get('/experiences/edit/{experienceId}', ExperienceForm::class)->name('experiences.edit');
                 Route::get('/edit', ProfileSeniman::class)->name('edit');
             });
 
@@ -85,7 +83,7 @@ Route::middleware('auth')->group(function () {
             // })->name('dashboard.seniman');
             // Tambahkan parameter {locale} ke URI route logout
             Route::prefix('karya')->as('karya.')->group(function () {
-                Route::get('/list', [KaryaController::class, 'index'])->name('index');
+                Route::get('/', [KaryaController::class, 'index'])->name('index');
                 Route::get('/tambah', [KaryaController::class, 'create'])->name('tambah-karya');
                 Route::post('/tambah', [KaryaController::class, 'store'])->name('store');
                 Route::get('/edit/{karya}', [KaryaController::class, 'edit'])->name('edit');

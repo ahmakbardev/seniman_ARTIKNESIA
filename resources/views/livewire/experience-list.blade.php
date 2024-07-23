@@ -1,14 +1,14 @@
 <div class="card shadow">
     <div class="card-body">
-        <div class="flex justify-between items-center">
-            <h4 class="">Projects Contributions</h4>
-            <a href="{{ route('experiences.add', ['locale' => app()->getLocale()]) }}"
+        <div class="flex justify-between items-center border-b border-gray-300 pb-4">
+            <h4 class="text-lg font-medium">Projects Contributions</h4>
+            <a href="{{ route('seniman.profile.experiences.add', ['locale' => app()->getLocale()]) }}"
                 class="btn bg-indigo-600 text-white border-indigo-600 hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 md:visible invisible">Add
                 Experience</a>
         </div>
-        @if (session('success'))
+        {{-- @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
+        @endif --}}
         <div class="max-h-72 overflow-y-auto my-4" data-simplebar="">
 
             @foreach ($experiences as $experience)
@@ -51,11 +51,11 @@
                                     type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i data-feather="more-vertical" class="w-4 h-4"></i>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('experiences.edit', ['experienceId' => $experience->id, 'locale' => app()->getLocale()]) }}">Edit</a>
+                                <ul class="dropdown-menu text-sm">
+                                    <li><a class="dropdown-item p-0" style="height: 1.5rem;"
+                                            href="{{ route('seniman.profile.experiences.edit', ['experienceId' => $experience->id, 'locale' => app()->getLocale()]) }}">Edit</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"
+                                    <li><a class="dropdown-item p-0" style="height: 1.5rem;" href="#"
                                             wire:click.prevent="deleteExperience({{ $experience->id }})">Delete</a></li>
                                 </ul>
                             </div>

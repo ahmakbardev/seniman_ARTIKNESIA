@@ -11,9 +11,13 @@ class KaryaController extends Controller
 {
     public function index()
     {
-        $karyas = Karya::all();
+        // Mendapatkan user yang sedang login
+        $user = Auth::user();
+        // Mendapatkan karya yang dimiliki oleh user yang sedang login
+        $karyas = Karya::where('user_id', $user->id)->get();
         return view('seniman.karya.index', compact('karyas'));
     }
+
 
     public function create()
     {

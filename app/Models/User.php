@@ -44,19 +44,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function provinsi()
     {
-        return $this->belongsTo(Provinsi::class);
+        return $this->belongsTo(Provinsi::class, 'provinsi_id');
     }
 
     public function kota()
     {
-        return $this->belongsTo(Kota::class);
+        return $this->belongsTo(Kota::class, 'kota_id');
     }
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role_id');
     }
-    // Relasi dengan Subkategori
+
     public function subkategori()
     {
         return $this->belongsTo(Subkategori::class, 'subkategori');

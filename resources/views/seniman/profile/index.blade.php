@@ -7,10 +7,6 @@
 @section('seniman_content')
     {{-- @livewire('ProfileSeniman') --}}
     <div class="p-6">
-        <div class="flex items-center mb-4 border-b border-gray-300 pb-4">
-            <!-- title -->
-            <h1 class="inline-block text-xl font-semibold leading-6">Overview</h1>
-        </div>
         <div class="block">
             <div class="flex items-center p-5 rounded-t-md shadow bg-cover bg-no-repeat pt-28"
                 style="background-image: url('{{ asset('assets/images/background/profile-cover.jpg') }}')"></div>
@@ -19,23 +15,23 @@
                     <div class="flex items-center">
                         <!-- avatar -->
                         <div class="w-24 h-24 mr-2 relative flex justify-end items-end -mt-10">
-                            <img src="{{ asset('assets/images/avatar/avatar-1.jpg') }}"
-                                class="rounded-full border-4 border-white" alt="" />
-                            <a href="#!" class="absolute top-0 right-0 mr-2" data-bs-toggle="tooltip"
+                            <img src="{{ Auth::user()->profile_pic ? asset('storage/' . Auth::user()->profile_pic) : asset('assets/images/avatar/avatar-1.jpg') }}"
+                                class="rounded-full border-4 border-white aspect-square object-cover" alt="" />
+                            <div class="absolute top-0 right-0 mr-2" data-bs-toggle="tooltip"
                                 data-placement="top" title="" data-original-title="Verified"
                                 data-bs-original-title="">
                                 <img src="{{ asset('assets/images/svg/checked-mark.svg') }}" alt="" height="30"
                                     width="30" />
-                            </a>
+                            </div>
                         </div>
                         <!-- text -->
                         <div class="leading-4">
                             <h2 class="mb-2 text-lg whitespace-nowrap">
-                                Jitu Chauhan
+                                {{ Auth::user()->username }}
                                 <a href="#!" class="text-decoration-none" data-bs-toggle="tooltip" data-placement="top"
                                     title="" data-original-title="Beginner" data-bs-original-title=""></a>
                             </h2>
-                            <p class="mb-0 text-gray-500">@imjituchauhan</p>
+                            <p class="mb-0 text-gray-500">{{ $role->nama }} {{ $jenisKarya->nama }}, {{ $subkategori->nama }}</p>
                         </div>
                     </div>
                     <div>
@@ -47,7 +43,7 @@
                     </div>
                 </div>
                 <!-- nav -->
-                <div class=" ">
+                {{-- <div class=" ">
                     <!-- list -->
                     <ul class="flex flex-no-wrap overflow-auto text-center text-gray-500 border-gray-300 border-t">
                         <li class="mr-2">
@@ -76,7 +72,7 @@
                                 class="inline-block p-4 text-gray-800 font-semibold border-t-2 border-transparent hover:text-indigo-600 hover:border-indigo-600">Activity</a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="mb-6 grid grid-cols-1 gap-x-6 gap-y-8 xl:grid-cols-2">
@@ -89,35 +85,34 @@
                     <h5 class="uppercase tracking-widest text-sm font-semibold">Bio</h5>
                     <!-- text -->
                     <p class="mt-2 mb-6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspen disse var ius enim in eros elementum
-                        tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum
-                        nulla, ut commodo diam libero vitae erat.
+                        {{ $user->deskripsi_diri }}
                     </p>
                     <!-- row -->
                     <div class="mb-5">
                         <!-- text -->
                         <h5 class="uppercase tracking-widest text-sm font-semibold">Position</h5>
-                        <p class="mb-0">Theme designer at Bootstrap.</p>
+                        <p class="mb-0">{{ $role->nama }} {{ $jenisKarya->nama }}, {{ $subkategori->nama }}</p>
                     </div>
                     <!-- content -->
                     <div class="flex flex-row justify-between mb-5">
                         <div class="flex-1">
                             <h5 class="uppercase tracking-widest text-sm font-semibold">Phone</h5>
-                            <p class="mb-0">+32112345689</p>
+                            <p class="mb-0">{{ $user->whatsapp }}</p>
                         </div>
                         <div class="flex-1">
-                            <h5 class="uppercase tracking-widest text-sm font-semibold">Date of Birth</h5>
-                            <p class="mb-0">01.10.1997</p>
+                            <h5 class="uppercase tracking-widest text-sm font-semibold">Seniman ID</h5>
+                            <p class="mb-0">{{ $user->id_seniman }}</p>
                         </div>
                     </div>
                     <div class="flex flex-row justify-between mb-5">
                         <div class="flex-1">
                             <h5 class="uppercase tracking-widest text-sm font-semibold">Email</h5>
-                            <p class="mb-0">dashui@gmail.com</p>
+                            <p class="mb-0">{{ $user->email }}</p>
                         </div>
                         <div class="flex-1">
                             <h5 class="uppercase tracking-widest text-sm font-semibold">Location</h5>
-                            <p class="mb-0">Ahmedabad, India</p>
+                            <p class="mb-0">{{ $kota ? $kota->nama : 'N/A' }}, {{ $provinsi ? $provinsi->nama : 'N/A' }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -125,7 +120,7 @@
             <!-- card -->
             @livewire('experience-list')
         </div>
-        <div class="mb-6 grid grid-cols-1 gap-x-6 gap-y-8 xl:grid-cols-2">
+        {{-- <div class="mb-6 grid grid-cols-1 gap-x-6 gap-y-8 xl:grid-cols-2">
             <!-- card -->
             <div class="card shadow">
                 <!-- card body -->
@@ -374,6 +369,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

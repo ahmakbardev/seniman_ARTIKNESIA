@@ -6,6 +6,20 @@
                 <!-- title -->
                 <h4 class="mb-1">General Settings</h4>
             </div>
+            @if ($errorMessage)
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-5 rounded relative" role="alert">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">{{ $errorMessage }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20" onclick="this.parentElement.parentElement.style.display='none';">
+                            <title>Close</title>
+                            <path
+                                d="M14.348 5.652a.5.5 0 1 0-.706-.708L10 8.586 6.354 4.944a.5.5 0 1 0-.708.708l3.647 3.646-3.647 3.646a.5.5 0 0 0 .708.708L10 10.414l3.646 3.646a.5.5 0 0 0 .708-.708l-3.646-3.646 3.646-3.646z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
             <div class="mb-6 inline-flex md:flex md:items-center gap-3 flex-col md:flex-row w-full">
                 <div class="flex-1 text-gray-800 font-semibold">
                     <h5 class="mb-0">Avatar</h5>
@@ -32,8 +46,7 @@
                             @endif
                         </div>
                         @if ($uploadSuccess)
-                            <div
-                                id="upload-success"
+                            <div id="upload-success"
                                 class="absolute inset-0 flex items-center justify-center bg-green-500 text-white text-sm font-bold p-2 rounded transition-opacity duration-500 opacity-0">
                                 Upload Successful!
                             </div>
@@ -134,11 +147,15 @@
             const uploadSuccess = document.getElementById('upload-success');
             uploadSuccess.classList.remove('opacity-0');
             uploadSuccess.classList.add('opacity-100');
-    
+
             setTimeout(() => {
                 uploadSuccess.classList.remove('opacity-100');
                 uploadSuccess.classList.add('opacity-0');
             }, 2000); // 2 seconds
+        });
+
+        Livewire.on('profileUpdated', () => {
+            window.location.href = "{{ route('seniman.profile.index', ['locale' => app()->getLocale()]) }}";
         });
     </script>
 </div>

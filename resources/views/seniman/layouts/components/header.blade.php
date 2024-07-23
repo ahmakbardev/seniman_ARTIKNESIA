@@ -7,14 +7,73 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
         </a>
-        <div class="ml-3 hidden md:hidden lg:block">
-            <!-- form -->
-            <form class="flex items-center">
-                <input type="search"
-                    class="border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"
-                    placeholder="Search" />
-            </form>
+        <div class="ml-10 hidden md:hidden lg:block">
+            <ol class="flex items-center whitespace-nowrap" aria-label="Breadcrumb">
+                @php
+
+                    // Cek nama route saat ini
+                    $currentRouteName = Route::currentRouteName();
+                    $segments = Request::segments();
+                    if (in_array($currentRouteName, ['seniman.profile.edit'])) {
+                        $excludeSegments = ['en', 'id', 'seniman'];
+                    } elseif (in_array($currentRouteName, ['seniman.profile.experiences.add', 'seniman.profile.experiences.edit'])) {
+                        $excludeSegments = ['en', 'id', 'seniman', 'experiences', 'edit'];
+                    } else {
+                        $excludeSegments = ['en', 'id', 'seniman', 'edit'];
+                    }
+                    $url = '';
+                    $baseURL = url('/');
+                    $locale = in_array($segments[0], ['en', 'id']) ? array_shift($segments) : null;
+                @endphp
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-base text-gray-500 hover:text-indigo-600 focus:outline-none focus:text-indigo-600"
+                        href="{{ $baseURL }}">Home</a>
+                    @if (count($segments) > 0)
+                        <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    @endif
+                </li>
+                @foreach ($segments as $index => $segment)
+                    @php
+                        $url .= '/' . $segment;
+                        $isLast = $index == count($segments) - 1;
+                        // Generate URL for the breadcrumb
+                        $breadcrumbUrl = $locale ? url("$locale$url") : url($url);
+                        $hideSegment = is_numeric($segment);
+                        $segmentName = $hideSegment ? 'Edit' : ucfirst($segment);
+                    @endphp
+                    @if (!in_array($segment, $excludeSegments) && !$hideSegment)
+                        <li class="inline-flex items-center">
+                            @if ($isLast)
+                                <span class="text-base font-semibold text-gray-800 truncate">{{ $segmentName }}</span>
+                            @else
+                                <a class="flex items-center text-base text-gray-500 hover:text-indigo-600 focus:outline-none focus:text-indigo-600"
+                                    href="{{ $breadcrumbUrl }}">
+                                    {{ $segmentName }}
+                                    <svg class="flex-shrink-0 mx-2 overflow-visible h-4 w-4 text-gray-400"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m9 18 6-6-6-6" />
+                                    </svg>
+                                </a>
+                            @endif
+                        </li>
+                    @elseif ($isLast && $hideSegment)
+                        <li class="inline-flex items-center">
+                            <span class="text-base font-semibold text-gray-800 truncate">Edit</span>
+                        </li>
+                    @endif
+                @endforeach
+
+            </ol>
         </div>
+
+
         <!-- navbar nav -->
         <ul class="flex ml-auto items-center">
             <li class="dropdown stopevent mr-2">
@@ -90,8 +149,8 @@
                 <a class="rounded-full" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <div class="w-10 h-10 relative">
-                        <img alt="avatar" src="{{ asset('assets/images/avatar/avatar-1.jpg') }}"
-                            class="rounded-full" />
+                        <img alt="avatar" src="{{ Auth::user()->profile_pic ? asset('storage/' . Auth::user()->profile_pic) : asset('assets/images/avatar/avatar-1.jpg') }}"
+                            class="rounded-full aspect-square object-cover" />
                         <div
                             class="absolute border-gray-200 border-2 rounded-full right-0 bottom-0 bg-green-600 h-3 w-3">
                         </div>
@@ -100,20 +159,21 @@
                 <div class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="dropdownUser">
                     <div class="px-4 pb-0 pt-2">
                         <div class="leading-4">
-                            <h5 class="mb-1">John E. Grainger</h5>
-                            <a href="#">View my profile</a>
+                            <h5 class="mb-1">{{Auth::user()->username }}</h5>
+                            <h6 class="text-sm">{{Auth::user()->id_seniman }}</h6>
                         </div>
                         <div class="border-b mt-3 mb-2"></div>
                     </div>
 
                     <ul class="list-unstyled">
                         <li>
-                            <a class="dropdown-item" href="{{ route('seniman.profile.index', ['locale'=> app()->getLocale()]) }}">
+                            <a class="dropdown-item"
+                                href="{{ route('seniman.profile.index', ['locale' => app()->getLocale()]) }}">
                                 <i class="w-4 h-4" data-feather="user"></i>
                                 Edit Profile
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a class="dropdown-item" href="#">
                                 <i class="w-4 h-4" data-feather="activity"></i>
                                 Activity Log
@@ -131,10 +191,9 @@
                                 <i class="w-4 h-4" data-feather="settings"></i>
                                 Account Settings
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
-                            <form
-                                action="{{ route('logout', ['locale' => app()->getLocale()]) }}" method="POST">
+                            <form action="{{ route('logout', ['locale' => app()->getLocale()]) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="dropdown-item">
                                     <i class="w-4 h-4" data-feather="power"></i>

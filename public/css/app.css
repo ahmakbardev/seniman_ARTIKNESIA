@@ -627,6 +627,9 @@ video {
 .collapse {
   visibility: collapse;
 }
+.static {
+  position: static;
+}
 .fixed {
   position: fixed;
 }
@@ -736,6 +739,10 @@ video {
 .m-8 {
   margin: 2rem;
 }
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -817,6 +824,9 @@ video {
 }
 .ml-1 {
   margin-left: 0.25rem;
+}
+.ml-10 {
+  margin-left: 2.5rem;
 }
 .ml-2 {
   margin-left: 0.5rem;
@@ -978,6 +988,9 @@ video {
 .h-screen {
   height: 100vh;
 }
+.h-48 {
+  height: 12rem;
+}
 .max-h-0 {
   max-height: 0px;
 }
@@ -986,6 +999,9 @@ video {
 }
 .max-h-full {
   max-height: 100%;
+}
+.min-h-96 {
+  min-height: 24rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1173,6 +1189,15 @@ video {
 .animate-ping {
   animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+@keyframes pulse {
+
+  50% {
+    opacity: .5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 .cursor-not-allowed {
   cursor: not-allowed;
 }
@@ -1328,6 +1353,9 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
+.overflow-visible {
+  overflow: visible;
+}
 .overflow-x-auto {
   overflow-x: auto;
 }
@@ -1339,6 +1367,11 @@ video {
 }
 .overflow-x-visible {
   overflow-x: visible;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .whitespace-nowrap {
   white-space: nowrap;
@@ -1451,6 +1484,10 @@ video {
 }
 .border-primary\/25 {
   border-color: rgb(223 190 101 / 0.25);
+}
+.border-red-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity));
 }
 .border-red-500 {
   --tw-border-opacity: 1;
@@ -1658,6 +1695,9 @@ video {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+.p-0 {
+  padding: 0px;
 }
 .p-1 {
   padding: 0.25rem;
@@ -3250,6 +3290,9 @@ button[aria-expanded="true"] .collapse-icon {
 } .focus\:bg-white:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+} .focus\:text-indigo-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(223 190 101 / var(--tw-text-opacity));
 } .focus\:placeholder-gray-600:focus::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(99 115 129 / var(--tw-placeholder-opacity));
@@ -3513,6 +3556,10 @@ button[aria-expanded="true"] .collapse-icon {
 
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:h-auto {
+    height: auto;
   }
 
   .md\:max-h-72 {

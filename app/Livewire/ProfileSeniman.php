@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\ValidationException;
 
 class ProfileSeniman extends Component
 {
@@ -27,11 +28,12 @@ class ProfileSeniman extends Component
     public $profile_pic;
     public $new_profile_pic;
     public $uploadSuccess = false;
+    public $errorMessage = '';
 
     public function mount()
     {
         $this->user = Auth::user();
-        $this->subkategoriName = Subkategori::find($this->user->subkategori)->nama;
+        $this->subkategoriName = Subkategori::find($this->user->subkategori)->nama ?? 'Unknown';
 
         // Inisialisasi properti dengan data user
         $this->username = $this->user->username;
@@ -63,34 +65,61 @@ class ProfileSeniman extends Component
 
     public function updatedNewProfilePic()
     {
-        $this->validate([
-            'new_profile_pic' => 'image|max:1024', // 1MB Max
-        ]);
+        try {
+            $this->validate([
+                'new_profile_pic' => 'image|max:1024', // 1MB Max
+            ]);
 
-        $this->profile_pic = $this->new_profile_pic->store('profile-pics', 'public');
-        $this->user->profile_pic = $this->profile_pic;
-        $this->user->save();
+            $this->profile_pic = $this->new_profile_pic->store('profile-pics', 'public');
+            $this->user->profile_pic = $this->profile_pic;
+            $this->user->save();
 
-        $this->uploadSuccess = true;
-        $this->reset('new_profile_pic');
+            $this->uploadSuccess = true;
+            $this->reset('new_profile_pic');
 
-        // Emit event untuk JavaScript
-        $this->dispatch('profilePicUpdated');
+            // Emit event untuk JavaScript
+            $this->dispatchBrowserEvent('profilePicUpdated');
+        } catch (ValidationException $e) {
+            $this->errorMessage = 'Failed to upload profile picture: ' . $e->getMessage();
+        } catch (\Exception $e) {
+            $this->errorMessage = 'An unexpected error occurred: ' . $e->getMessage();
+        }
     }
 
     public function submit()
     {
-        // Simpan perubahan
-        $this->user->username = $this->username;
-        $this->user->email = $this->email;
-        $this->user->whatsapp = $this->phone;
-        $this->user->deskripsi_diri = $this->bio;
-        $this->user->alamat = $this->selectedCity . ', ' . $this->selectedProvince;
-        $this->user->save();
+        try {
+            $this->validate([
+                'username' => 'required|string|max:255|unique:users,username,' . $this->user->id,
+                'email' => 'required|email|max:255|unique:users,email,' . $this->user->id,
+                'phone' => 'nullable|string|max:15',
+                'bio' => 'nullable|string',
+                'selectedProvince' => 'required',
+                'selectedCity' => 'required',
+            ]);
+
+            // Simpan perubahan
+            $this->user->username = $this->username;
+            $this->user->email = $this->email;
+            $this->user->whatsapp = $this->phone;
+            $this->user->deskripsi_diri = $this->bio;
+            $this->user->alamat = $this->selectedCity . ', ' . $this->selectedProvince;
+            $this->user->save();
+
+            // Emit event untuk pengalihan ke profil
+            $this->dispatch('profileUpdated');
+        } catch (ValidationException $e) {
+            $this->errorMessage = 'Failed to save profile: ' . $e->getMessage();
+        } catch (\Exception $e) {
+            $this->errorMessage = 'An unexpected error occurred: ' . $e->getMessage();
+        }
     }
+
 
     public function render()
     {
-        return view('livewire.profile-seniman');
+        return view('livewire.profile-seniman', [
+            'errorMessage' => $this->errorMessage,
+        ]);
     }
 }

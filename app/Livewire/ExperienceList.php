@@ -20,6 +20,6 @@ class ExperienceList extends Component
     public function deleteExperience($experienceId)
     {
         Experience::findOrFail($experienceId)->delete();
-        $this->emit('experienceUpdated');
+        $this->dispatch('experienceUpdated');
     }
 }

@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ARTIKNESIA</title>
-@include('layouts.components.styles')
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo/logo-square.png') }}" />
+
+    @include('layouts.components.styles')
     @livewireStyles
 
 </head>
 
 <body class="antialiased font-montserrat box-border">
+    @livewireScripts
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     @include('layouts.components.navbar')
 
@@ -20,7 +23,6 @@
     </main>
 
     @include('layouts.components.footer')
-    @livewireScripts
 </body>
 
 </html>

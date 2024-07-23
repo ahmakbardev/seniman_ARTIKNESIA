@@ -29,10 +29,11 @@
 
     <link rel="stylesheet" href="{{ asset('assets/libs/apexcharts/dist/apexcharts.css') }}" />
 
-    <title>{{Auth::user()->username}} Seniman | ARTIKNESIA</title>
+    <title>{{ Auth::user()->username }} Seniman | ARTIKNESIA</title>
 </head>
 
 <body>
+    @livewireScripts
     <main>
         <!-- start the project -->
         <!-- app layout -->
@@ -77,7 +78,6 @@
     <script src="{{ asset('assets/libs/feather-icons/dist/feather.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
-    @livewireScripts
     @yield('scripts')
     <!-- Theme JS -->
     <script src="{{ asset('js/theme.js') }}"></script>
