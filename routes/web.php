@@ -95,6 +95,7 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('/batch', NegotiationBatchController::class);
             Route::resource('/{batch}/negotiation', NegotiationController::class);
+            Route::get('/negotiation/{negotiation}/accept', [NegotiationController::class, 'accept'])->name('negotiation.accept');
         });
     });
 });

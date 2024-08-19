@@ -2,63 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Negotiation;
+use App\Models\NegotiationBatch;
+use App\Services\RajaOngkir;
 use Illuminate\Http\Request;
 
 class NegotiationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index($id, NegotiationBatch $batch)
     {
-        //
+        $batch->load(['negotiations' => function ($query) {
+            $query->orderBy('price', 'desc');
+        }, 'negotiations.customer', 'negotiations.artist']);
+        $allStatus = $batch->negotiations->pluck('status')->toArray();
+        $status    = true;
+        if (in_array('accept', $allStatus)) {
+            $status = false; // Or do something else if all are accepted
+        }
+        return view('seniman.negotiation.index', compact('batch', 'status'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function accept($id, Negotiation $negotiation)
     {
-        //
-    }
+        $negotiation->status = 'accept';
+        $negotiation->save();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        /**
+         * !!Please input send email for notification!!
+         *
+         * @TODO
+         */
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $batchId = $negotiation->negotiation_batch_id;
+        $batch   = NegotiationBatch::query()->find($batchId);
+        $batch->negotiations()->where('status', '!=', 'accept')->update(['status' => 'rejected']);
+        $batch->status = 'close';
+        $batch->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return to_route('seniman.negotiation.index', [app()->getLocale(), $batchId]);
     }
 }

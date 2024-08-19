@@ -15,7 +15,7 @@ class NegotiationBatchController extends Controller
     {
         $negotiationBatches = NegotiationBatch::query()->whereHas('product', function ($query) {
             $query->where('user_id', Auth::id());
-        })->get();
+        })->with('product')->get();
 
         return view('seniman.batch.index', compact('negotiationBatches'));
     }

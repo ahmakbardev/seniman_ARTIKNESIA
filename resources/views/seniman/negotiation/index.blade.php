@@ -7,12 +7,8 @@
             <div class="card h-full shadow">
                 <!-- heading -->
                 <div class="border-b border-gray-300 px-5 py-4 flex justify-between items-center">
-                    <h4 class="font-semibold">List Batch</h4>
-                    <button type="button"
-                            class="btn gap-x-2 bg-primary text-white border-primary disabled:opacity-50 disabled:pointer-events-none hover:bg-primary-darker hover:border-primary-darker active:bg-primary-darker active:border-primary-darker focus:outline-none focus:ring-4 focus:ring-indigo-300"
-                            onclick="window.location.href='{{ route('seniman.batch.create', ['locale' => app()->getLocale()]) }}'">
-                        Tambah Batch
-                    </button>
+                    <a href="{{ route('seniman.batch.index', [app()->getLocale()]) }}">Kembali</a>
+                    <h4 class="font-semibold">List Negosiasi Batch {{ $batch->batch }}</h4>
                 </div>
 
                 <div class="relative overflow-x-auto overflow-y-auto" style="max-height: 300px" data-simplebar="">
@@ -20,44 +16,47 @@
                     <table class="text-left w-full whitespace-nowrap">
                         <thead class="text-gray-700">
                         <tr>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Karya</th>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Batch</th>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">End Date Batch</th>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Action</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Email</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Price</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Status</th>
+                            @if($status)
+                                <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Action</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
-                        @if ($negotiationBatches->isEmpty())
+                        @if ($batch->negotiations->isEmpty())
                             <tr>
                                 <td colspan="6" class="border-b border-gray-300 font-medium py-3 px-6 text-center">No
                                     Batch Found
                                 </td>
                             </tr>
                         @else
-                            @foreach ($negotiationBatches as $item)
+                            @foreach ($batch->negotiations as $item)
                                 <tr>
-
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <h5 class="mb-1 ml-4">{{ $item->product->name }}</h5>
+                                            <h5 class="mb-1 ml-4">{{ $item->customer->email }}</h5>
                                         </div>
                                     </td>
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <h5 class="mb-1 ml-4">{{ $item->batch }}</h5>
+                                            <h5 class="mb-1 ml-4">Rp {{ number_format($item->price, 2, ',','.') }}</h5>
                                         </div>
                                     </td>
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <h5 class="mb-1 ml-4">{{ $item->finish_at }}</h5>
+                                            <h5 class="mb-1 ml-4">{{ $item->status }}</h5>
                                         </div>
                                     </td>
-                                    <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
-                                        <div class="flex items-center">
-                                            <a href="{{ route('seniman.negotiation.index',['locale' => app()->getLocale(), 'batch' => $item->id]) }}"
-                                               class="text-primary">Detail</a>
-                                        </div>
-                                    </td>
+                                    @if($status)
+                                        <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
+                                            <div class="flex items-center">
+                                                <a href="{{ route('seniman.negotiation.accept',[app()->getLocale(),$item->id]) }}"
+                                                   class="text-primary">Setujui</a>
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif

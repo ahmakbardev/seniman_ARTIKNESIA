@@ -1,7 +1,14 @@
 //webpack.mix.js
 const mix = require("laravel-mix");
 
-mix
+mix.webpackConfig({}).browserSync({
+    files: [
+        'app/**/*.php',
+        'resources/views/**/*.php',
+        'public/js/**/*.js',
+        'public/css/**/*.css'
+    ]
+})
     .js("resources/js/app.js", "public/js")
     .js("resources/js/theme.js", "public/js/theme.js")
     .sourceMaps()

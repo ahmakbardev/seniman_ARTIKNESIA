@@ -32,7 +32,7 @@
                     Produk
                 </a>
                 <div id="navPages"
-                     class="collapse {{ in_array($currentRouteName, ['seniman.karya.index', 'settings','seniman.batch.index']) ? 'show' : '' }}"
+                     class="collapse {{ in_array($currentRouteName, ['seniman.karya.index', 'settings','seniman.batch.index' ,'seniman.negotiation.index']) ? 'show' : '' }}"
                      data-bs-parent="#sideNavbar">
                     <ul class="nav flex-col">
                         <li class="nav-item">
@@ -41,7 +41,7 @@
                                 Produk</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-base {{ $currentRouteName == 'seniman.batch.index' ? 'active' : '' }}"
+                            <a class="nav-link text-base {{ $currentRouteName == 'seniman.batch.index' ? 'active' : '' }} {{ $currentRouteName == 'seniman.negotiation.index' ? 'active' : '' }}"
                                href="{{ route('seniman.batch.index', ['locale' => app()->getLocale()]) }}">List
                                 Negotiation</a>
                         </li>
