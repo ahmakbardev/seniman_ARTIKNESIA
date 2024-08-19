@@ -11,9 +11,9 @@ class JenisKaryaSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
-        JenisKarya::create(['nama' => 'Fine Art']);
-        JenisKarya::create(['nama' => 'Digital Art']);
+        JenisKarya::query()->create(['nama' => 'Fine Art', 'gambar' => '/images/kategori/fine-art.png']);
+        JenisKarya::query()->create(['nama' => 'Digital Art', 'gambar' => '/images/kategori/digital-art.png']);
     }
 }

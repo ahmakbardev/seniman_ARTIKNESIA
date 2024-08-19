@@ -2,7 +2,7 @@
 
 
 @section('assets')
-    <link rel="stylesheet" href="{{ asset('assets/libs/dropzone/dist/dropzone.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/libs/dropzone/dist/dropzone.css') }}"/>
 @endsection
 
 @section('seniman_content')

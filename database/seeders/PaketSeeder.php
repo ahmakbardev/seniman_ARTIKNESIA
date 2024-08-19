@@ -14,17 +14,17 @@ class PaketSeeder extends Seeder
     public function run(): void
     {
         Paket::create([
-            'nama' => 'Pemula',
+            'nama'  => 'Pemula',
             'harga' => 70000,
         ]);
 
         Paket::create([
-            'nama' => 'Profesional',
+            'nama'  => 'Profesional',
             'harga' => 150000,
         ]);
 
         Paket::create([
-            'nama' => 'Maestro',
+            'nama'  => 'Maestro',
             'harga' => 400000,
         ]);
     }

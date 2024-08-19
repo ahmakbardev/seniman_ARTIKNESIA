@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\KaryaController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\NegotiationBatchController;
+use App\Http\Controllers\NegotiationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadController;
 use App\Livewire\EmailVerification;
@@ -90,6 +92,9 @@ Route::middleware('auth')->group(function () {
                 Route::get('/edit/{karya}', [KaryaController::class, 'edit'])->name('edit');
                 Route::put('/update/{karya}', [KaryaController::class, 'update'])->name('update');
             });
+
+            Route::resource('/batch', NegotiationBatchController::class);
+            Route::resource('/{batch}/negotiation', NegotiationController::class);
         });
     });
 });
