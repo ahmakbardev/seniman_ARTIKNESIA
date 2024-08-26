@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             JenisKaryaSeeder::class,
             SubkategoriSeeder::class,
             AdminUserSeeder::class,
+            KaryaSeeder::class,
             // Tambahkan seeder lainnya jika ada
         ]);
     }

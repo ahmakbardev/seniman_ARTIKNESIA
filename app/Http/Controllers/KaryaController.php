@@ -22,9 +22,9 @@ class KaryaController extends Controller
     public function create()
     {
         // Mendapatkan data user yang sedang login
-        $user = Auth::user();
+        $user        = Auth::user();
         $subkategori = DB::table('subkategoris')->where('id', $user->subkategori)->first();
-        $jenisKarya = DB::table('jenis_karyas')->where('id', $subkategori->jenis_karya_id)->first();
+        $jenisKarya  = DB::table('jenis_karyas')->where('id', $subkategori->jenis_karya_id)->first();
 
         $maxPrice = null;
         switch ($user->paket_id) {
@@ -43,8 +43,8 @@ class KaryaController extends Controller
 
         return view('seniman.karya.create', [
             'category_id' => $subkategori->id,
-            'jenisKarya' => $jenisKarya->nama,
-            'maxPrice' => $maxPrice
+            'jenisKarya'  => $jenisKarya->nama,
+            'maxPrice'    => $maxPrice,
         ]);
     }
 
@@ -68,15 +68,15 @@ class KaryaController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
-            'images.*' => 'image|max:10240', // Max 10MB per image
-            'size_x' => 'required|integer',
-            'size_y' => 'required|integer',
-            'weight' => 'required|numeric',
-            'material' => 'required|string',
-            'philosophy' => 'required|string',
-            'price' => ['required', 'numeric', "max:$maxPrice"], // Add max validation rule
-            'stock' => 'required|integer',
+            'name'        => 'required',
+            'images.*'    => 'image|max:10240', // Max 10MB per image
+            'size_x'      => 'required|integer',
+            'size_y'      => 'required|integer',
+            'weight'      => 'required|numeric',
+            'material'    => 'required|string',
+            'philosophy'  => 'required|string',
+            'price'       => ['required', 'numeric', "max:$maxPrice"], // Add max validation rule
+            'stock'       => 'required|integer',
             'category_id' => 'required',
         ]);
 
@@ -88,18 +88,18 @@ class KaryaController extends Controller
         }
 
         Karya::create([
-            'user_id' => $user->id,
-            'name' => $request->name,
-            'images' => json_encode($mediaFiles),
-            'size_x' => $request->size_x,
-            'size_y' => $request->size_y,
-            'weight' => $request->weight,
-            'material' => $request->material,
-            'philosophy' => $request->philosophy,
-            'price' => $request->price,
-            'stock' => $request->stock,
+            'user_id'     => $user->id,
+            'name'        => $request->name,
+            'images'      => json_encode($mediaFiles),
+            'size_x'      => $request->size_x,
+            'size_y'      => $request->size_y,
+            'weight'      => $request->weight,
+            'material'    => $request->material,
+            'philosophy'  => $request->philosophy,
+            'price'       => $request->price,
+            'stock'       => $request->stock,
             'category_id' => $request->category_id,
-            'status' => 'pending',
+            'status'      => 'pending',
         ]);
 
         return redirect()->route('seniman.karya.index', ['locale' => app()->getLocale()])->with('success', 'Karya berhasil ditambahkan');
@@ -108,9 +108,9 @@ class KaryaController extends Controller
     public function edit($locale, Karya $karya)
     {
         // Mendapatkan data user yang sedang login
-        $user = Auth::user();
+        $user        = Auth::user();
         $subkategori = DB::table('subkategoris')->where('id', $user->subkategori)->first();
-        $jenisKarya = DB::table('jenis_karyas')->where('id', $subkategori->jenis_karya_id)->first();
+        $jenisKarya  = DB::table('jenis_karyas')->where('id', $subkategori->jenis_karya_id)->first();
 
         $maxPrice = null;
         switch ($user->paket_id) {
@@ -128,10 +128,10 @@ class KaryaController extends Controller
         }
 
         return view('seniman.karya.edit', [
-            'karya' => $karya,
+            'karya'       => $karya,
             'category_id' => $subkategori->id,
-            'jenisKarya' => $jenisKarya->nama,
-            'maxPrice' => $maxPrice
+            'jenisKarya'  => $jenisKarya->nama,
+            'maxPrice'    => $maxPrice,
         ]);
     }
 
@@ -155,15 +155,15 @@ class KaryaController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
-            'images.*' => 'image|max:10240', // Max 10MB per image
-            'size_x' => 'required|integer',
-            'size_y' => 'required|integer',
-            'weight' => 'required|numeric',
-            'material' => 'required|string',
-            'philosophy' => 'required|string',
-            'price' => ['required', 'numeric', "max:$maxPrice"], // Add max validation rule
-            'stock' => 'required|integer',
+            'name'        => 'required',
+            'images.*'    => 'image|max:10240', // Max 10MB per image
+            'size_x'      => 'required|integer',
+            'size_y'      => 'required|integer',
+            'weight'      => 'required|numeric',
+            'material'    => 'required|string',
+            'philosophy'  => 'required|string',
+            'price'       => ['required', 'numeric', "max:$maxPrice"], // Add max validation rule
+            'stock'       => 'required|integer',
             'category_id' => 'required',
         ]);
 
@@ -175,15 +175,15 @@ class KaryaController extends Controller
         }
 
         $karya->update([
-            'name' => $request->name,
-            'images' => json_encode($mediaFiles),
-            'size_x' => $request->size_x,
-            'size_y' => $request->size_y,
-            'weight' => $request->weight,
-            'material' => $request->material,
-            'philosophy' => $request->philosophy,
-            'price' => $request->price,
-            'stock' => $request->stock,
+            'name'        => $request->name,
+            'images'      => json_encode($mediaFiles),
+            'size_x'      => $request->size_x,
+            'size_y'      => $request->size_y,
+            'weight'      => $request->weight,
+            'material'    => $request->material,
+            'philosophy'  => $request->philosophy,
+            'price'       => $request->price,
+            'stock'       => $request->stock,
             'category_id' => $request->category_id,
         ]);
 
