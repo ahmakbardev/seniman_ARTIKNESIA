@@ -46,6 +46,20 @@ class AdminUserSeeder extends Seeder
             'subkategori'       => Subkategori::query()->inRandomOrder()->first()->id,
         ]);
 
+        User::query()->create([
+            'name'              => 'user',
+            'username'          => 'user',
+            'email'             => 'user@local.com',
+            'password'          => Hash::make('password'),
+            'role_id'           => 2,
+            'alamat'            => 'Malang, Indonesia',
+            'paket_id'          => Paket::query()->inRandomOrder()->first()->id,
+            'email_verified_at' => now(),
+            'id_seniman'        => mt_rand(1000, 9999),
+            'jenis_karya'       => JenisKarya::query()->inRandomOrder()->first()->id,
+            'subkategori'       => Subkategori::query()->inRandomOrder()->first()->id,
+        ]);
+
         User::factory()->count(100)->create();
     }
 }

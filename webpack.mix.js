@@ -2,6 +2,7 @@
 const mix = require("laravel-mix");
 
 mix.webpackConfig({}).browserSync({
+    proxy: 'localhost:8000',
     files: [
         'app/**/*.php',
         'resources/views/**/*.php',

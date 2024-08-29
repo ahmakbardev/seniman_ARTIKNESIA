@@ -96,6 +96,11 @@ Route::middleware('auth')->group(function () {
             Route::resource('/batch', NegotiationBatchController::class);
             Route::resource('/{batch}/negotiation', NegotiationController::class);
             Route::get('/negotiation/{negotiation}/accept', [NegotiationController::class, 'accept'])->name('negotiation.accept');
+
+            Route::get('/order', [\App\Http\Controllers\OrderController::class, 'index'])->name('order.index');
+            Route::get('/order/{order}', [\App\Http\Controllers\OrderController::class, 'show'])->name('order.show');
+            Route::get('/order/shipment/{shipment}', [\App\Http\Controllers\OrderController::class, 'shipment'])->name('order.shipment');
+            Route::put('/order/shipment/{shipment}', [\App\Http\Controllers\OrderController::class, 'update'])->name('order.shipment.update');
         });
     });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karya;
 use App\Models\NegotiationBatch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class NegotiationBatchController extends Controller
      */
     public function create()
     {
-        return view('seniman.karya.create');
+        $karya = Karya::query()->where('user_id', Auth::id())->get();
+        return view('seniman.batch.create', compact('karya'));
     }
 
     /**
@@ -33,7 +35,19 @@ class NegotiationBatchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'karya'            => 'required',
+            'tanggal_berakhir' => 'required',
+        ]);
+
+        $count = NegotiationBatch::query()->where('product_id', $request->karya)->count();
+        NegotiationBatch::query()->create([
+            'product_id' => $request->karya,
+            'batch'      => $count + 1,
+            'finish_at'  => $request->tanggal_berakhir,
+        ]);
+
+        return redirect()->route('seniman.batch.index', ['locale' => app()->getLocale()])->with('success', 'Negosiasi periode berhasil ditambahkan!');
     }
 
     /**

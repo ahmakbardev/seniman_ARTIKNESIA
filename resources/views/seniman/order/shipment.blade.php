@@ -19,33 +19,22 @@
             </div>
         @endif
         <div class="card shadow-lg p-6">
-            <form action="{{ route('seniman.batch.store', ['locale' => app()->getLocale()]) }}" method="POST"
-                  enctype="multipart/form-data" class="space-y-4">
+            <form action="{{ route('seniman.order.shipment.update', ['locale' => app()->getLocale(), 'shipment'=> $shipment->id]) }}"
+                  method="POST" class="space-y-4">
                 @csrf
+                @method('put')
                 <label class="block text-sm">
-                    <span class="text-gray-800">Pilih Karya</span>
-                    <select class="block w-full border mt-1 text-sm border-gray-300 p-3 rounded-md bg-white focus:border-primary focus:outline-none focus:shadow-outline-primary text-gray-700 focus:shadow-outline-gray form-input"
-                            name="karya">
-                        @foreach($karya as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('karya')
-                    <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </label>
-                <label class="block text-sm">
-                    <span class="text-gray-800">Tanggal Berakhir</span>
-                    <input type="date" name="tanggal_berakhir" value="{{ old('finish_at') }}"
+                    <span class="text-gray-800">Masukan Resi Pengiriman</span>
+                    <input type="text" name="resi" value="{{ old('resi') }}"
                            class="block w-full border mt-1 text-sm border-gray-300 p-3 rounded-md bg-white focus:border-primary focus:outline-none focus:shadow-outline-primary text-gray-700 focus:shadow-outline-gray form-input"/>
-                    @error('tanggal_berakhir')
+                    @error('resi')
                     <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </label>
                 <div>
                     <button type="submit"
                             class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                        Tambah Periode
+                        Submit
                     </button>
                 </div>
             </form>

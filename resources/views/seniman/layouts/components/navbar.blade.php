@@ -32,7 +32,7 @@
                     Produk
                 </a>
                 <div id="navPages"
-                     class="collapse {{ in_array($currentRouteName, ['seniman.karya.index', 'settings','seniman.batch.index' ,'seniman.negotiation.index']) ? 'show' : '' }}"
+                     class="collapse {{ in_array($currentRouteName, ['seniman.karya.index', 'settings','seniman.batch.index' ,'seniman.negotiation.index','seniman.order.index']) ? 'show' : '' }}"
                      data-bs-parent="#sideNavbar">
                     <ul class="nav flex-col">
                         <li class="nav-item">
@@ -44,6 +44,11 @@
                             <a class="nav-link text-base {{ $currentRouteName == 'seniman.batch.index' ? 'active' : '' }} {{ $currentRouteName == 'seniman.negotiation.index' ? 'active' : '' }}"
                                href="{{ route('seniman.batch.index', ['locale' => app()->getLocale()]) }}">List
                                 Negotiation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-base {{ $currentRouteName == 'seniman.order.index' ? 'active' : '' }} {{ $currentRouteName == 'seniman.order.index' ? 'active' : '' }}"
+                               href="{{ route('seniman.order.index', ['locale' => app()->getLocale()]) }}">List
+                                Transaksi</a>
                         </li>
                         {{-- <li class="nav-item">
                             <a class="nav-link text-base {{ $currentRouteName == 'settings' ? 'active' : '' }}"
