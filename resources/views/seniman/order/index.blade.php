@@ -7,12 +7,7 @@
             <div class="card h-full shadow">
                 <!-- heading -->
                 <div class="border-b border-gray-300 px-5 py-4 flex justify-between items-center">
-                    <h4 class="font-semibold">List Batch</h4>
-                    <button type="button"
-                            class="btn gap-x-2 bg-primary text-white border-primary disabled:opacity-50 disabled:pointer-events-none hover:bg-primary-darker hover:border-primary-darker active:bg-primary-darker active:border-primary-darker focus:outline-none focus:ring-4 focus:ring-indigo-300"
-                            onclick="window.location.href='{{ route('seniman.batch.create', ['locale' => app()->getLocale()]) }}'">
-                        Tambah Periode
-                    </button>
+                    <h4 class="font-semibold">Daftar Transaksi</h4>
                 </div>
 
                 <div class="relative overflow-x-auto overflow-y-auto" style="max-height: 300px" data-simplebar="">
@@ -20,41 +15,47 @@
                     <table class="text-left w-full whitespace-nowrap">
                         <thead class="text-gray-700">
                         <tr>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Karya</th>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Periode</th>
-                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Tanggal Berakhir</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Invoice</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Customer</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Status</th>
+                            <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Total</th>
                             <th scope="col" class="border-b font-medium bg-gray-100 px-6 py-3">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if ($negotiationBatches->isEmpty())
+                        @if ($orders->isEmpty())
                             <tr>
                                 <td colspan="6" class="border-b border-gray-300 font-medium py-3 px-6 text-center">No
-                                    Batch Found
+                                    Tidak ada transaksi
                                 </td>
                             </tr>
                         @else
-                            @foreach ($negotiationBatches as $item)
+                            @foreach ($orders as $item)
                                 <tr>
 
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <h5 class="mb-1 ml-4">{{ $item->product->name }}</h5>
+                                            <h5 class="mb-1 ml-4">{{ $item->invoice }}</h5>
                                         </div>
                                     </td>
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <h5 class="mb-1 ml-4">{{ $item->batch }}</h5>
+                                            <h5 class="mb-1 ml-4">{{ $item->customer->name }}</h5>
                                         </div>
                                     </td>
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <h5 class="mb-1 ml-4">{{ $item->finish_at }}</h5>
+                                            <h5 class="mb-1 ml-4">{{ $item->status }}</h5>
                                         </div>
                                     </td>
                                     <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
                                         <div class="flex items-center">
-                                            <a href="{{ route('seniman.negotiation.index',['locale' => app()->getLocale(), 'batch' => $item->id]) }}"
+                                            <h5 class="mb-1 ml-4">{{ $item->total_price }}</h5>
+                                        </div>
+                                    </td>
+                                    <td class="border-b border-gray-300 font-medium py-3 px-6 text-left">
+                                        <div class="flex items-center">
+                                            <a href="{{ route('seniman.order.show',['locale' => app()->getLocale(), 'order' => $item->id]) }}"
                                                class="text-primary">Detail</a>
                                         </div>
                                     </td>
