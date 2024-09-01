@@ -78,7 +78,7 @@ class ProfileSeniman extends Component
             $this->reset('new_profile_pic');
 
             // Emit event untuk JavaScript
-            $this->dispatchBrowserEvent('profilePicUpdated');
+            $this->dispatch('profilePicUpdated');
         } catch (ValidationException $e) {
             $this->errorMessage = 'Failed to upload profile picture: ' . $e->getMessage();
         } catch (\Exception $e) {
