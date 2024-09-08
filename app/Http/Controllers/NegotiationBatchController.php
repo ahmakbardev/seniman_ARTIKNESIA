@@ -26,7 +26,7 @@ class NegotiationBatchController extends Controller
      */
     public function create()
     {
-        $karya = Karya::query()->where('user_id', Auth::id())->get();
+        $karya = Karya::query()->where('user_id', Auth::id())->where('price', '>=', 5000000)->get();
         return view('seniman.batch.create', compact('karya'));
     }
 
