@@ -90,6 +90,14 @@ class AdminUserSeeder extends Seeder
                 'jenis_karya' => 1, // Fine Art
                 'subkategori' => 1, // Lukis
             ],
+            [
+                'name' => "Satria Test User",
+                'whatsapp' => '1234567890',
+                'email' => 'satria@example.com',
+                'paket_id' => 3, // Maestro
+                'jenis_karya' => 1, // Fine Art
+                'subkategori' => 1, // Lukis
+            ],
         ];
 
         foreach ($users as $userData) {
