@@ -21,16 +21,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
           rel="stylesheet">
 
-    @env('production')
+    {{-- @env('production') --}}
         <!-- Append version number to CSS file name -->
         <link rel="stylesheet" href="{{ asset('css/app.css?v=1.04') }}">
         <!-- Add cache-control headers for CSS and JavaScript files -->
         <link rel="preload" href="{{ asset('css/app.css?v=1.04') }}" as="style" crossorigin="anonymous"/>
-    @endenv
+    {{-- @endenv
 
     @env('local')
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @endenv
+    @endenv --}}
 
     @yield('assets')
     @livewireStyles

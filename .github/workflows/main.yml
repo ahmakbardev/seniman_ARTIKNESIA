@@ -27,7 +27,12 @@ jobs:
             git pull
             chmod +x ~/bin/composer
             echo "export PATH=$HOME/bin:$PATH" >> ~/.bash_profile
+            echo "export PATH=$HOME/bin/node/bin:$PATH" >> ~/.bash_profile
             source ~/.bash_profile
+            which node
+            node -v
+            npm -v
+            npm run prod
             which composer
             composer --version
             composer install
