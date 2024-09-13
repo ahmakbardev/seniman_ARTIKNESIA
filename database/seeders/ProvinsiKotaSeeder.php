@@ -17,7 +17,7 @@ class ProvinsiKotaSeeder extends Seeder
 
         // Ambil data provinsi dari API RajaOngkir
         $response = Http::withHeaders([
-            'key' => env('RAJAONGKIR_API_KEY')
+            'key' => '2f187fd20546b492f85a0654595a89d4'
         ])->get('https://api.rajaongkir.com/starter/province');
 
         $provinces = $response->json()['rajaongkir']['results'];
@@ -35,24 +35,27 @@ class ProvinsiKotaSeeder extends Seeder
                     'key' => env('RAJAONGKIR_API_KEY')
                 ])->get("https://api.rajaongkir.com/starter/city?province={$province['province_id']}");
 
-                $cities = $response->json()['rajaongkir']['results'];
+                if ($response->json()['rajaongkir']['status']['code'] == 200) {
+                    $cities = $response->json()['rajaongkir']['results'];
 
-                // Jika provinsi bukan Jawa Timur, batasi kota hingga 15
-                if ($province['province_id'] != 12) {
-                    $cities = array_slice($cities, 0, 15);
-                }
-
-                // Simpan data kota ke database
-                foreach ($cities as $city) {
-                    // Periksa apakah kota dengan nama yang sama sudah ada di database
-                    if (!Kota::where('nama', $city['city_name'])->where('provinsi_id', $provinsi->id)->exists()) {
-                        Kota::create([
-                            'id' => $city['city_id'],
-                            'nama' => $city['city_name'],
-                            'provinsi_id' => $provinsi->id
-                        ]);
+                    // Jika provinsi bukan Jawa Timur, batasi kota hingga 15
+                    if ($province['province_id'] != 12) {
+                        $cities = array_slice($cities, 0, 15);
                     }
+    
+                    // Simpan data kota ke database
+                    foreach ($cities as $city) {
+                        // Periksa apakah kota dengan nama yang sama sudah ada di database
+                        if (!Kota::where('nama', $city['city_name'])->where('provinsi_id', $provinsi->id)->exists()) {
+                            Kota::create([
+                                'id' => $city['city_id'],
+                                'nama' => $city['city_name'],
+                                'provinsi_id' => $provinsi->id
+                            ]);
+                        }
+                    }    
                 }
+            
             }
         }
     }
