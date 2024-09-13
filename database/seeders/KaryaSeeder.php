@@ -13,6 +13,6 @@ class KaryaSeeder extends Seeder
      */
     public function run(): void
     {
-        Karya::factory()->count(200)->create();
+        // Karya::factory()->count(200)->create();
     }
 }
