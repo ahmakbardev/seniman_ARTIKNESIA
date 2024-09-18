@@ -23,9 +23,9 @@
 
     {{-- @env('production') --}}
         <!-- Append version number to CSS file name -->
-        <link rel="stylesheet" href="{{ asset('css/app.css?v=1.04') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css?v=1.05') }}">
         <!-- Add cache-control headers for CSS and JavaScript files -->
-        <link rel="preload" href="{{ asset('css/app.css?v=1.04') }}" as="style" crossorigin="anonymous"/>
+        <link rel="preload" href="{{ asset('css/app.css?v=1.05') }}" as="style" crossorigin="anonymous"/>
     {{-- @endenv
 
     @env('local')
