@@ -75,11 +75,10 @@
                     <h3 class="text-lg font-semibold mb-2">Metode Pembayaran:</h3>
                     <p class="mb-1">Transfer Bank: <span class="font-bold">BRI</span></p>
                     <p class="text-lg font-semibold text-blue-600">No. Rekening: 125901006868503</p>
-                    <p class="text-sm text-gray-500">a.n. Akbar</p>
+                    <p class="text-sm text-gray-500">a.n. Ali Mas'ud</p>
                 </div>
                 <ul class="list-decimal pl-6 space-y-2">
                     <li>Pastikan nominal pembayaran sesuai dengan invoice yang diberikan.</li>
-                    <li>Tambahkan kode unik jika diperlukan untuk memudahkan verifikasi.</li>
                     <li>Setelah transfer, simpan bukti pembayaran sebagai konfirmasi.</li>
                     <li>Unggah bukti pembayaran melalui form konfirmasi di sebelah kiri.</li>
                     <li>Anda akan menerima email konfirmasi setelah pembayaran diverifikasi oleh tim kami.</li>
