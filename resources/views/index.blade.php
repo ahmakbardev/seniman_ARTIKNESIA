@@ -140,7 +140,7 @@
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
-                            <p class="text-base font-semibold">Kesempatan Pameran</p>
+                            <p class="text-base font-semibold">Kesempatan Pameran (Segera)</p>
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
@@ -187,7 +187,7 @@
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
-                            <p class="text-base font-semibold">Kesempatan Pameran</p>
+                            <p class="text-base font-semibold">Kesempatan Pameran (Segera)</p>
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success-mute.svg') }}" alt="">
@@ -234,7 +234,7 @@
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
-                            <p class="text-base font-semibold">Kesempatan Pameran</p>
+                            <p class="text-base font-semibold">Kesempatan Pameran (Segera)</p>
                         </div>
                         <div class="">
                             <img src="{{ asset('assets/images/icons/circle-success.svg') }}" alt="">
