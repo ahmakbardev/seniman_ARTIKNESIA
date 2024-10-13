@@ -2224,6 +2224,7 @@ video {
 
 * {
     font-family: "Plus Jakarta Sans", sans-serif;
+    scroll-behavior: smooth;
 }
 
 .special-container:hover {

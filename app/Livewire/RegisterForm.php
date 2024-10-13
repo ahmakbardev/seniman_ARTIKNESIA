@@ -47,9 +47,15 @@ class RegisterForm extends Component
     {
         $this->pakets = Paket::all();
 
+        // Tangkap parameter paket dari URL
+        if (request()->has('paket')) {
+            $this->paket = request('paket');
+        }
+
         // Load jenis karya options
         $this->jenisKaryaOptions = JenisKarya::all();
     }
+
 
     public function togglePasswordVisibility()
     {

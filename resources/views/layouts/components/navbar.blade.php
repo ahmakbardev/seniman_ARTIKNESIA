@@ -10,10 +10,10 @@
     <nav class="px-5 py-4 flex gap-10 h-fit justify-between lg:items-center bg-white">
         <img class="flex-none" src="{{ asset('assets/images/logo/artiknesia.svg') }}" alt="">
         <ul class="md:flex hidden  flex-1 gap-8 justify-center items-center">
-            <li class="text-sm"><a href="#" class="underline-animation">Beranda</a></li>
-            <li class="text-sm"><a href="#" class="underline-animation">Benefit</a></li>
-            <li class="text-sm"><a href="#" class="underline-animation">Promo</a></li>
-            <li class="text-sm"><a href="#" class="underline-animation">Testimoni</a></li>
+            <li class="text-sm"><a href="#beranda" class="underline-animation">Beranda</a></li>
+            <li class="text-sm"><a href="#benefit" class="underline-animation">Benefit</a></li>
+            <li class="text-sm"><a href="#promo" class="underline-animation">Promo</a></li>
+            <li class="text-sm"><a href="#testimoni" class="underline-animation">Testimoni</a></li>
         </ul>
         <div class="hidden sm:flex">
             <ul class="flex items-center gap-3 ml-3 flex-none">
